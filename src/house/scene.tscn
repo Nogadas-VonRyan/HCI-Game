@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://cqw6asgssjwma"]
+
+[ext_resource type="Script" path="res://src/house/scene.gd" id="1_2g3mh"]
+[ext_resource type="PackedScene" uid="uid://deswb2pjt7dbd" path="res://src/house/house.tscn" id="1_cc1p1"]
+[ext_resource type="PackedScene" uid="uid://dnyiugyag2cg4" path="res://src/player/player.tscn" id="2_eowgm"]
+[ext_resource type="Texture2D" uid="uid://c4vw820d2bh1q" path="res://assets/images/night.png" id="4_o165g"]
+[ext_resource type="Texture2D" uid="uid://bhax17fh0pi8m" path="res://assets/images/question.png" id="4_w7vc3"]
+[ext_resource type="Shader" path="res://shaders/invert.gdshader" id="5_dhb20"]
+[ext_resource type="PackedScene" uid="uid://ihttvdx7bwrs" path="res://src/house/light_switch.tscn" id="6_c8f1m"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_sc1yy"]
+ground_color = Color(0, 0, 0.0313726, 1)
+energy_multiplier = 0.3
+night_sky = ExtResource("4_o165g")
+
+[sub_resource type="Sky" id="Sky_f1hmc"]
+sky_material = SubResource("PhysicalSkyMaterial_sc1yy")
+
+[sub_resource type="Environment" id="Environment_327m2"]
+background_mode = 1
+background_color = Color(0.0117647, 0.00784314, 0.0117647, 1)
+sky = SubResource("Sky_f1hmc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_36nuy"]
+shader = ExtResource("5_dhb20")
+
+[node name="House" type="Node3D"]
+script = ExtResource("1_2g3mh")
+
+[node name="house_model" parent="." instance=ExtResource("1_cc1p1")]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0.0146065, 0.0631371, 0.0088501)
+
+[node name="Player" parent="." instance=ExtResource("2_eowgm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.07234, 1.09645, -3.05979)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
+environment = SubResource("Environment_327m2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(-0.999123, 0.0230518, -0.0349598, 0, 0.834848, 0.550481, 0.0418757, 0.549998, -0.834116, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0416, 2.0113, -7.16892)
+light_color = Color(0.317647, 0.317647, 0.317647, 1)
+omni_range = 213.754
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0487, 2.73015, -14.271)
+light_color = Color(0.317647, 0.317647, 0.317647, 1)
+omni_range = 213.754
+
+[node name="Markers" type="Node3D" parent="."]
+
+[node name="LightMarker" type="Sprite3D" parent="Markers"]
+transform = Transform3D(0.0532663, 0, 0, 0, 0.0463216, 0, 0, 0, 1, 17.1719, 2.128, -12.8984)
+material_overlay = SubResource("ShaderMaterial_36nuy")
+billboard = 1
+no_depth_test = true
+texture = ExtResource("4_w7vc3")
+
+[node name="BookMarker" type="Sprite3D" parent="Markers"]
+transform = Transform3D(0.0907962, 0, 0, 0, 0.067538, 0, 0, 0, 1, 20.6779, 2.31754, -14.2185)
+visible = false
+material_overlay = SubResource("ShaderMaterial_36nuy")
+billboard = 1
+no_depth_test = true
+texture = ExtResource("4_w7vc3")
+
+[node name="LightSwitch" parent="." instance=ExtResource("6_c8f1m")]
+transform = Transform3D(0.000474951, 0, 0, 0, 0.00066953, 0, 0, 0, 0.0006723, 17.1645, 1.52179, -12.9251)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 265.0
+offset_bottom = 106.0
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+
+[connection signal="NotPointingAtInteractable" from="Player" to="." method="_on_player_not_pointing_at_interactable"]
+[connection signal="PointingAtInteractable" from="Player" to="." method="_on_player_pointing_at_interactable"]

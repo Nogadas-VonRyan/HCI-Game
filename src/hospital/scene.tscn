@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://d22m6iqp2p0q5"]
+
+[ext_resource type="Script" path="res://src/hospital/scene.gd" id="1_w6uh0"]
+[ext_resource type="PackedScene" uid="uid://dnyiugyag2cg4" path="res://src/player/player.tscn" id="2_bmw56"]
+[ext_resource type="PackedScene" uid="uid://dcyk6v1ang01t" path="res://src/hospital/hospital1_model.tscn" id="2_fv7hl"]
+
+[sub_resource type="Environment" id="Environment_wr0y4"]
+
+[node name="Hospital" type="Node3D"]
+script = ExtResource("1_w6uh0")
+
+[node name="Player" parent="." instance=ExtResource("2_bmw56")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.2495, 11.117, 31.996)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wr0y4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+visible = false
+
+[node name="hospital1_model" parent="." instance=ExtResource("2_fv7hl")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 563.0
+offset_right = 1153.0
+offset_bottom = 646.0
+color = Color(0.0196078, 0.0196078, 0.0196078, 0.513726)
+
+[node name="InventorySlots" type="HBoxContainer" parent="UI/ColorRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="NotPointingAtInteractable" from="Player" to="." method="_on_player_not_pointing_at_interactable"]
+[connection signal="PointingAtInteractable" from="Player" to="." method="_on_player_pointing_at_interactable"]

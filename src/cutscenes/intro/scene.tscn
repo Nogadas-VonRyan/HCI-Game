@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsaqekt883qsj"]
+
+[ext_resource type="Script" path="res://src/cutscenes/intro/scene.gd" id="1_i8y8g"]
+[ext_resource type="Script" path="res://src/cutscenes/intro/MeshInstance3D.gd" id="2_j43xm"]
+[ext_resource type="AudioStream" uid="uid://dhiwbj505cfx8" path="res://assets/audio/ElevenLabs_2024-03-18T10_26_43_Ethan.mp3" id="3_k571u"]
+
+[sub_resource type="Environment" id="Environment_1bb6v"]
+background_color = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7xtmj"]
+
+[node name="intro" type="Node3D"]
+script = ExtResource("1_i8y8g")
+
+[node name="DialogueBox" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = 560.0
+offset_right = 1155.0
+offset_bottom = 651.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="DialogueBox"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 1156.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1bb6v")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.863896, 0.298718, -0.223142, 0.188185, 0.409928, 0.454468, 0.548156, -0.611512, 0.19565, -0.492198, 0, -3.62896)
+mesh = SubResource("BoxMesh_7xtmj")
+script = ExtResource("2_j43xm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_k571u")
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]

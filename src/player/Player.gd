@@ -4,10 +4,7 @@ extends CharacterBody3D
 signal PointingAtInteractable(collided: Object)
 signal NotPointingAtInteractable
 
-# TO DO: move out the HUD to separate it out from player
 @onready var Raycast: ShapeCast3D = $Head/Camera3D/ShapeCast3D 
-@onready var ObjectiveMessage: Label = $HUD/Objective
-@onready var CenterMessage: Label = $HUD/Message
 
 @export var SPEED = 2.0
 @export var JUMP_VELOCITY = 4.5
@@ -15,10 +12,8 @@ var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 
 func _ready():
 	Raycast.add_exception(self)
@@ -69,7 +64,3 @@ func interact():
 		NotPointingAtInteractable.emit()
 		return
 	PointingAtInteractable.emit(collided_object)
-
-
-func setCenterMessage(message: String):
-	CenterMessage.text = message

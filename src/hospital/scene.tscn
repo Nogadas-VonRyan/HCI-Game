@@ -78,6 +78,15 @@ offset_right = 1151.0
 offset_bottom = 649.0
 mouse_filter = 2
 
+[node name="CenterMessage" type="Label" parent="."]
+offset_left = 524.0
+offset_top = 439.0
+offset_right = 613.0
+offset_bottom = 465.0
+text = "Hello There"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="NotPointingAtInteractable" from="Player" to="." method="_on_player_not_pointing_at_interactable"]
 [connection signal="PointingAtInteractable" from="Player" to="." method="_on_player_pointing_at_interactable"]
 [connection signal="passwordSuccess" from="PasswordLock" to="." method="_on_password_lock1_success"]

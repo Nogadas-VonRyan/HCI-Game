@@ -3,30 +3,29 @@ extends Node3D
 @onready var Player = $Player
 @onready var World = $WorldEnvironment
 @onready var CRT = $CRT
+@onready var CenterMessage = $CenterMessage
 var nightvision = false
 
 func _ready():
 	$pause_menu.visible = false
 	print(World.environment.background_color)
-	pass
 
 func _unhandled_input(event):
-	if Input.is_action_just_pressed("flashlight"):
-		if nightvision:
-			World.environment.background_color = Color(0.03,0.03,0.03)
-			CRT.visible = false
-			nightvision = false
-			var light: OmniLight3D = World.get_node("OmniLight3D")
-			light.light_energy = 1
-			light.light_color = Color(1,1,1)
-		else:
-			World.environment.background_color = Color(0.1647, 0.502, 0.1098, 1)
-			CRT.visible = true
-			nightvision = true
-			var light: OmniLight3D = World.get_node("OmniLight3D")
-			light.light_color = Color(0.5608, 1, 0.4392)
-			light.light_energy = 15
-		pass
+#	if Input.is_action_just_pressed("flashlight"):
+#		if nightvision:
+#			World.environment.background_color = Color(0.03,0.03,0.03)
+#			CRT.visible = false
+#			nightvision = false
+#			var light: OmniLight3D = World.get_node("OmniLight3D")
+#			light.light_energy = 1
+#			light.light_color = Color(1,1,1)
+#		else:
+#			World.environment.background_color = Color(0.1647, 0.502, 0.1098, 1)
+#			CRT.visible = true
+#			nightvision = true
+#			var light: OmniLight3D = World.get_node("OmniLight3D")
+#			light.light_color = Color(0.5608, 1, 0.4392)
+#			light.light_energy = 15
 	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if $pause_menu.visible:
@@ -48,16 +47,17 @@ func _unhandled_input(event):
 		get_tree().quit()
 
 func _on_player_pointing_at_interactable(collided):
-	Player.setCenterMessage("Press [E] to Interact")
-	if Input.is_action_just_pressed("interact"):
-		if collided.isOpen:
-			collided.close()
-		else:
-			collided.open()
-
+	CenterMessage.visible = true
+	CenterMessage.text = collided.message
+	if Input.is_action_just_pressed("interact") and collided is Interactable:
+		match collided.name:
+			"Door":
+				collided.interact()
+	pass
 
 func _on_player_not_pointing_at_interactable():
-	Player.setCenterMessage("")	
+	CenterMessage.visible = false
+	pass
 
 
 func _on_password_lock1_success():

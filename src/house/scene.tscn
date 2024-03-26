@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cqw6asgssjwma"]
+[gd_scene load_steps=16 format=3 uid="uid://cqw6asgssjwma"]
 
 [ext_resource type="Script" path="res://src/house/scene.gd" id="1_2g3mh"]
 [ext_resource type="PackedScene" uid="uid://deswb2pjt7dbd" path="res://src/house/house.tscn" id="1_cc1p1"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bhax17fh0pi8m" path="res://assets/images/question.png" id="4_w7vc3"]
 [ext_resource type="Shader" path="res://shaders/invert.gdshader" id="5_dhb20"]
 [ext_resource type="PackedScene" uid="uid://ihttvdx7bwrs" path="res://src/house/light_switch.tscn" id="6_c8f1m"]
+[ext_resource type="PackedScene" uid="uid://dpsyhgnrtrb07" path="res://src/ui/inventory.tscn" id="8_sst7u"]
+[ext_resource type="PackedScene" uid="uid://dp0dgxllj3tep" path="res://src/ui/pause_menu.tscn" id="9_eb23i"]
+[ext_resource type="Shader" path="res://shaders/crt.gdshader" id="10_s7txm"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_sc1yy"]
 ground_color = Color(0, 0, 0.0313726, 1)
@@ -18,11 +21,14 @@ sky_material = SubResource("PhysicalSkyMaterial_sc1yy")
 
 [sub_resource type="Environment" id="Environment_327m2"]
 background_mode = 1
-background_color = Color(0.0117647, 0.00784314, 0.0117647, 1)
+background_color = Color(0.109804, 0.470588, 0.196078, 1)
 sky = SubResource("Sky_f1hmc")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_36nuy"]
 shader = ExtResource("5_dhb20")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vu5ik"]
+shader = ExtResource("10_s7txm")
 
 [node name="House" type="Node3D"]
 script = ExtResource("1_2g3mh")
@@ -32,16 +38,12 @@ transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0.0146065, 0.0631371
 
 [node name="Player" parent="." instance=ExtResource("2_eowgm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.07234, 1.09645, -3.05979)
+SPEED = 15.0
 
 [node name="Lights" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
 environment = SubResource("Environment_327m2")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
-transform = Transform3D(-0.999123, 0.0230518, -0.0349598, 0, 0.834848, 0.550481, 0.0418757, 0.549998, -0.834116, 0, 0, 0)
-visible = false
-shadow_enabled = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0416, 2.0113, -7.16892)
@@ -52,6 +54,11 @@ omni_range = 213.754
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0487, 2.73015, -14.271)
 light_color = Color(0.317647, 0.317647, 0.317647, 1)
 omni_range = 213.754
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(-0.891344, -0.132492, -0.433535, -0.447671, 0.10665, 0.887815, -0.0713916, 0.98543, -0.154375, 0, 0, 0)
+visible = false
+light_color = Color(0, 0, 0, 1)
 
 [node name="Markers" type="Node3D" parent="."]
 
@@ -70,15 +77,26 @@ billboard = 1
 no_depth_test = true
 texture = ExtResource("4_w7vc3")
 
+[node name="Label3D" type="Label3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0748, 1.48575, -14.1754)
+visible = false
+billboard = 1
+text = "Press [Enter] to add Item to Inventory"
+
 [node name="LightSwitch" parent="." instance=ExtResource("6_c8f1m")]
-transform = Transform3D(0.000474951, 0, 0, 0, 0.00066953, 0, 0, 0, 0.0006723, 17.1645, 1.52179, -12.9251)
+transform = Transform3D(0.000474951, 0, 0, 0, 0.00066953, 0, 0, 0, 0.0006723, 17.1645, 1.52179, -12.9536)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_right = 265.0
-offset_bottom = 106.0
+[node name="Inventory" parent="." instance=ExtResource("8_sst7u")]
+visible = false
 
-[node name="TextureButton" type="TextureButton" parent="HBoxContainer"]
-layout_mode = 2
+[node name="pause_menu" parent="." instance=ExtResource("9_eb23i")]
+visible = false
+
+[node name="CRT" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_vu5ik")
+offset_right = 1153.0
+offset_bottom = 649.0
+mouse_filter = 2
 
 [connection signal="NotPointingAtInteractable" from="Player" to="." method="_on_player_not_pointing_at_interactable"]
 [connection signal="PointingAtInteractable" from="Player" to="." method="_on_player_pointing_at_interactable"]

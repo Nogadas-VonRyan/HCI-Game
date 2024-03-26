@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bo2ywhw3kchj1"]
+[gd_scene load_steps=12 format=3 uid="uid://bo2ywhw3kchj1"]
 
 [ext_resource type="Script" path="res://src/menu/scene.gd" id="1_u6jx3"]
 [ext_resource type="Texture2D" uid="uid://bdwwk7xm7s5eh" path="res://assets/images/hospital_front_bg.jpg" id="2_kl6bs"]
@@ -21,6 +21,11 @@ font_size = 22
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4fys0"]
 shader = ExtResource("3_l7lkt")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h52i2"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 0.827451)
+
+[sub_resource type="Theme" id="Theme_28j5r"]
+
 [node name="menu" type="Node2D"]
 script = ExtResource("1_u6jx3")
 
@@ -32,8 +37,8 @@ texture = ExtResource("2_kl6bs")
 [node name="Menu" type="VBoxContainer" parent="."]
 offset_left = 53.0
 offset_top = 450.0
-offset_right = 139.0
-offset_bottom = 566.0
+offset_right = 146.0
+offset_bottom = 619.0
 
 [node name="StartButton" type="Label" parent="Menu"]
 layout_mode = 2
@@ -46,6 +51,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Settings"
 label_settings = SubResource("LabelSettings_h3g57")
+
+[node name="Credits" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Credits"
+label_settings = SubResource("LabelSettings_5e0w2")
 
 [node name="ExitButton" type="Label" parent="Menu"]
 layout_mode = 2
@@ -70,3 +81,98 @@ offset_bottom = 624.0
 theme_override_fonts/font = ExtResource("5_usewi")
 theme_override_font_sizes/font_size = 40
 text = "Echoes from the Past"
+
+[node name="Settings" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = 177.0
+offset_right = 1157.0
+offset_bottom = 467.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h52i2")
+
+[node name="Title" type="Label" parent="Settings"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 1157.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 18
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Settings"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 39.0
+offset_right = 811.0
+offset_bottom = 43.0
+
+[node name="Grid" type="GridContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -47.0
+offset_right = 252.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_28j5r")
+theme_override_constants/h_separation = 109
+theme_override_constants/v_separation = 7
+columns = 2
+
+[node name="Audio" type="Label" parent="Settings/Grid"]
+layout_mode = 2
+text = "Audio"
+
+[node name="AudioInput" type="HSlider" parent="Settings/Grid"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+value = 75.0
+allow_greater = true
+
+[node name="MouseSensitivity" type="Label" parent="Settings/Grid"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+
+[node name="MouseSensitivityInput" type="HSlider" parent="Settings/Grid"]
+layout_mode = 2
+max_value = 3000.0
+value = 1200.0
+
+[node name="LightingQuality" type="Label" parent="Settings/Grid"]
+layout_mode = 2
+text = "Lighting Quality"
+
+[node name="LightingQualityInput" type="OptionButton" parent="Settings/Grid"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Normal"
+popup/item_0/id = 0
+popup/item_1/text = "High"
+popup/item_1/id = 1
+
+[node name="VSync" type="Label" parent="Settings/Grid"]
+layout_mode = 2
+text = "V-Sync"
+
+[node name="VSyncInput" type="CheckButton" parent="Settings/Grid"]
+layout_mode = 2
+size_flags_horizontal = 0
+button_pressed = true
+
+[node name="RestoreDefault" type="Button" parent="Settings/Grid"]
+layout_mode = 2
+text = "Restore Default Settings"

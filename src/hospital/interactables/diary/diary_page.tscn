@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://b07wwokqoq3xj"]
+
+[ext_resource type="Script" path="res://DiaryPage.gd" id="1_hl345"]
+[ext_resource type="Texture2D" uid="uid://ciewyvh2nd6sc" path="res://assets/images/diary_page.png" id="2_1tepp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tot0j"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0gvy"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_1tepp")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_12dx5"]
+material = SubResource("StandardMaterial3D_d0gvy")
+
+[node name="DiaryPage" type="Area3D"]
+script = ExtResource("1_hl345")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_tot0j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_12dx5")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.787794, 0.01, 0)
+modulate = Color(0, 0, 0, 1)
+text = "Diary Entry - Day 1945
+
+Date: March 26, 1945
+
+Dear Diary,
+
+Another day dawns upon us, filled with the weight of secrecy and the burden of knowledge too dangerous for the world to know. As I sit here in my dimly lit laboratory, surrounded by the hum of machinery and the faint scent of chemicals, I can't help but feel a sense of both excitement and trepidation.
+
+Today marks the 1945th day since I embarked on this perilous journey of experimentation. My name is Dr. Alexander Hargrove, a scientist shrouded in secrecy, driven by a thirst for knowledge that pushes the boundaries of ethics and morality. My work, though controversial, holds the promise of revolutionary breakthroughs in the field of medical science. But at what cost?
+
+For months now, I've been conducting experiments on human subjects. The very thought sends a shiver down my spine, but I cannot afford to falter. My research focuses on unlocking the secrets of the human body and mind, pushing beyond the limitations imposed by conventional medicine. Each subject brings with them a story, a life filled with hopes and dreams, now sacrificed upon the altar of scientific progress.
+
+Today, I observed Subject 27, a young woman whose body has been ravaged by disease. Her frail form lies upon the operating table, connected to an array of monitors and IV drips. With practiced hands, I administer the latest concoction of drugs, a cocktail of chemicals designed to stimulate her immune system and halt the progression of her illness. The results are promising, yet I cannot shake the guilt that gnaws at my conscience.
+
+As the hours pass, I toil away in solitude, my mind consumed by thoughts of the implications of my actions. Am I a savior or a madman? Only time will tell. But for now, I must press on, driven by the relentless pursuit of knowledge and the faint glimmer of hope that one day, my sacrifices will pave the way for a brighter future.
+
+And so, as the clock ticks on and the shadows lengthen, I find solace in the silence of my laboratory, a sanctuary where dreams and nightmares intertwine. Tomorrow brings with it new challenges and new possibilities, and I can only pray that I have the strength to endure whatever lies ahead.
+
+Yours in secrecy and uncertainty,
+
+Dr. Alexander Hargrove"
+font_size = 6
+outline_size = 0
+horizontal_alignment = 0
+autowrap_mode = 3
+width = 330.0

@@ -48,6 +48,7 @@ _data = {
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_qktqk")
+SPEED = 3.0
 
 [node name="Head" type="Node3D" parent="."]
 
@@ -59,9 +60,17 @@ transform = Transform3D(1, 0, 0, 0, -1.7608e-08, -1.19346, 0, 0.402823, -5.2168e
 target_position = Vector3(0, -10, 0)
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="Head/Camera3D"]
-transform = Transform3D(0.387933, 0, 0, 0, -2.18557e-07, -0.366624, 0, 5, -1.60256e-08, 0, -0.0232878, 1.76294)
+transform = Transform3D(0.5, 0, 0, 0, -4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, -0.0232878, -0.358248)
 shape = SubResource("BoxShape3D_ir5s5")
 collision_mask = 2
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D"]
+visible = false
+light_color = Color(0.478431, 1, 0.431373, 1)
+light_energy = 7.703
+spot_range = 7.0
+spot_angle = 30.0
+spot_angle_attenuation = 2.21914
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_dghuq")
@@ -78,7 +87,7 @@ offset_top = 22.0
 offset_right = 716.0
 offset_bottom = 74.0
 text = "Objective:
-- Explore the room"
+- Find the missing pages"
 
 [node name="Message" type="Label" parent="HUD"]
 offset_left = 482.0

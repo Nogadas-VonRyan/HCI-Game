@@ -9,8 +9,8 @@ signal NotPointingAtInteractable
 @onready var ObjectiveMessage: Label = $HUD/Objective
 @onready var CenterMessage: Label = $HUD/Message
 
-const SPEED = 10.0
-const JUMP_VELOCITY = 4.5
+@export var SPEED = 2.0
+@export var JUMP_VELOCITY = 4.5
 var mouseSensibility = 1200
 var mouse_relative_x = 0
 var mouse_relative_y = 0

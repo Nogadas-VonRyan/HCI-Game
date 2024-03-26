@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsaqekt883qsj"]
+[gd_scene load_steps=8 format=3 uid="uid://bsaqekt883qsj"]
 
 [ext_resource type="Script" path="res://src/cutscenes/intro/scene.gd" id="1_i8y8g"]
 [ext_resource type="Script" path="res://src/cutscenes/intro/MeshInstance3D.gd" id="2_j43xm"]
+[ext_resource type="Texture2D" uid="uid://c5xhbkgjyrrh1" path="res://assets/images/member_photos/Nogadas_DIT.jpeg" id="2_l1w62"]
 [ext_resource type="AudioStream" uid="uid://dhiwbj505cfx8" path="res://assets/audio/ElevenLabs_2024-03-18T10_26_43_Ethan.mp3" id="3_k571u"]
 
 [sub_resource type="Environment" id="Environment_1bb6v"]
-background_color = Color(1, 1, 1, 1)
+background_mode = 1
+background_color = Color(0.768627, 0.768627, 0.768627, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_7xtmj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6cmo"]
+albedo_texture = ExtResource("2_l1w62")
+
+[sub_resource type="SphereMesh" id="SphereMesh_mmdxi"]
+material = SubResource("StandardMaterial3D_s6cmo")
 
 [node name="intro" type="Node3D"]
 script = ExtResource("1_i8y8g")
@@ -35,11 +41,12 @@ environment = SubResource("Environment_1bb6v")
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.863896, 0.298718, -0.223142, 0.188185, 0.409928, 0.454468, 0.548156, -0.611512, 0.19565, -0.492198, 0, -3.62896)
-mesh = SubResource("BoxMesh_7xtmj")
+transform = Transform3D(-0.978148, 0.00566459, 0.207837, 0.180896, 0.515961, 0.837293, -0.102494, 0.856593, -0.505711, -0.492198, 0, -3.62896)
+mesh = SubResource("SphereMesh_mmdxi")
 script = ExtResource("2_j43xm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_k571u")

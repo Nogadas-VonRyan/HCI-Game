@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://chfyox5qe0db8"]
+
+[ext_resource type="Script" path="res://src/intro/scene.gd" id="1_170c7"]
+
+[sub_resource type="Animation" id="Animation_xa8td"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qjxsx"]
+resource_name = "text_fade"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_58o6e"]
+_data = {
+"RESET": SubResource("Animation_xa8td"),
+"text_fade": SubResource("Animation_qjxsx")
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_170c7")
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = 1158.0
+offset_bottom = 656.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.054902, 0.054902, 0.054902, 1)
+
+[node name="Texts" type="Control" parent="Background"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="Label" parent="Background/Texts"]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 254.0
+offset_right = 1100.0
+offset_bottom = 474.0
+theme_override_font_sizes/font_size = 69
+text = "Group 2"
+uppercase = true
+
+[node name="Subtitle" type="Label" parent="Background/Texts"]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 350.0
+offset_right = 686.0
+offset_bottom = 466.0
+theme_override_font_sizes/font_size = 40
+text = "Presents"
+uppercase = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
+root_node = NodePath("../Texts")
+libraries = {
+"": SubResource("AnimationLibrary_58o6e")
+}
+
+[connection signal="animation_finished" from="Background/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

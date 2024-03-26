@@ -1,0 +1,11 @@
+Model Information:
+* title:	Combination lock
+* source:	https://sketchfab.com/3d-models/combination-lock-b8100aaf195947a683c23f609f77b068
+* author:	artron.classic (https://sketchfab.com/artron.classic)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Combination lock" (https://sketchfab.com/3d-models/combination-lock-b8100aaf195947a683c23f609f77b068) by artron.classic (https://sketchfab.com/artron.classic) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

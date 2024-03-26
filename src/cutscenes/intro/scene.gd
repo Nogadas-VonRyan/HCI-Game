@@ -6,10 +6,10 @@ extends Node3D
 
 var dialogue_lines: Array[String] = [
 	"When I was a kid,",
-	"my grandfather told me of how great of a doctor he was.",
+	"my grandfather told me of how great of a doctor he was",
 	"He had received many accolades and medals for his achievements.",
-	"Everyone was talking about him.",
-	"He was renowned.",
+	"Everyone was talking about him",
+	"He was renowned",
 	"But...",
 	"I have a feeling that something was off..."
 ]
@@ -31,6 +31,8 @@ func _input(event):
 
 
 func _process(delta):
+	if timer.time_left <= 99.5:
+		$WorldEnvironment.environment.background_color = Color(0,0,0)
 	print(timer.time_left)
 	if timer.time_left < 80:
 		get_tree().change_scene_to_file("res://src/house/scene.tscn")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ihttvdx7bwrs"]
+
+[ext_resource type="PackedScene" uid="uid://damrjiuqgis8p" path="res://assets/models/light_swirch/scene.gltf" id="1_0qwf5"]
+[ext_resource type="Script" path="res://src/house/light_switch.gd" id="2_dgooq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qb42w"]
+size = Vector3(450, 100, 580)
+
+[sub_resource type="BoxMesh" id="BoxMesh_waua2"]
+
+[node name="scene" instance=ExtResource("1_0qwf5")]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_dgooq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.43992, 1.39554)
+shape = SubResource("BoxShape3D_qb42w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D" index="0"]
+mesh = SubResource("BoxMesh_waua2")

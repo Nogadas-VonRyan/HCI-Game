@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://bb3mbi1yrvcox"]
+
+[ext_resource type="PackedScene" uid="uid://cqtbwss5p4qs" path="res://assets/models/crowbar/crowbar.glb" id="1_ffgfg"]
+[ext_resource type="Texture2D" uid="uid://d01fdtsxf1mir" path="res://assets/models/crowbar/crowbar_0.png" id="2_b6qy3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qhloh"]
+frequency = 0.21
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qv0e6"]
+noise = SubResource("FastNoiseLite_qhloh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ynm0l"]
+no_depth_test = true
+albedo_color = Color(0.843137, 0.843137, 0.843137, 1)
+albedo_texture = ExtResource("2_b6qy3")
+metallic = 0.87
+metallic_specular = 0.52
+metallic_texture = SubResource("NoiseTexture2D_qv0e6")
+roughness = 0.53
+
+[sub_resource type="Animation" id="Animation_3wb5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/Collada visual scene group/crowbar_low:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sketchfab_model/Collada visual scene group/crowbar_low:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0.720838, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5utd8"]
+resource_name = "swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sketchfab_model/Collada visual scene group/crowbar_low:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 1),
+"transitions": PackedFloat32Array(1.41421, 1.51572, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-5.48211, 7.25252, -3.1701e-07), Vector3(-5.48211, 0.513142, -2.24227e-08), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sketchfab_model/Collada visual scene group/crowbar_low:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 1),
+"transitions": PackedFloat32Array(1.62451, 1.18921, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0.720838, 0), Vector3(-1.34341, -1.5708, 2.29164), Vector3(0.30534, 1.24422, -0.494135), Vector3(-1.5708, 0.720821, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqeep"]
+_data = {
+"RESET": SubResource("Animation_3wb5u"),
+"swing": SubResource("Animation_5utd8")
+}
+
+[node name="no_depth_crowbar" instance=ExtResource("1_ffgfg")]
+
+[node name="crowbar_low" parent="Sketchfab_model/Collada visual scene group" index="0"]
+transform = Transform3D(75.1252, -66.0014, -0.000238924, 0, -0.000361999, 99.9998, -66.0014, -75.1252, -0.000271952, 0, 0, 0)
+
+[node name="defaultMaterial" parent="Sketchfab_model/Collada visual scene group/crowbar_low" index="0"]
+transform = Transform3D(1, -2.98023e-08, -8.88178e-16, 2.98023e-08, 1, 0, -3.10862e-15, 8.88178e-16, 1, 0, 0, 0)
+layers = 512
+surface_material_override/0 = SubResource("StandardMaterial3D_ynm0l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_tqeep")
+}

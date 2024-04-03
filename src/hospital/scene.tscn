@@ -1,0 +1,549 @@
+[gd_scene load_steps=51 format=3 uid="uid://chqv51kxireew"]
+
+[ext_resource type="Script" path="res://src/hospital/scene.gd" id="1_w6uh0"]
+[ext_resource type="PackedScene" uid="uid://b315dhm3wxa5d" path="res://src/player/player.tscn" id="2_bmw56"]
+[ext_resource type="PackedScene" uid="uid://dcyk6v1ang01t" path="res://src/hospital/hospital1_model.tscn" id="2_fv7hl"]
+[ext_resource type="PackedScene" uid="uid://3nvx4ows87tu" path="res://src/enemy/zombie/zombie.tscn" id="3_whsvx"]
+[ext_resource type="PackedScene" uid="uid://cihvj0lqp8sqn" path="res://src/hospital/boarded_door1/plank.tscn" id="5_aco7u"]
+[ext_resource type="PackedScene" uid="uid://cewufb3f4fjxd" path="res://src/hospital/interactables/diary/diary_page.tscn" id="5_gkxit"]
+[ext_resource type="Script" path="res://src/hospital/boarded_door1/boarded_door.gd" id="7_4nq3q"]
+[ext_resource type="PackedScene" uid="uid://75ch7lkl7t6e" path="res://src/ui/pause_menu/pause_menu.tscn" id="7_dhnhr"]
+[ext_resource type="PackedScene" uid="uid://bqva10kt6bf44" path="res://src/hospital/interactables/light_switch/light_switch.tscn" id="7_lg8hd"]
+[ext_resource type="PackedScene" uid="uid://52myw0cl70pn" path="res://src/hospital/password_lock/password_lock_scene.tscn" id="7_y3kry"]
+[ext_resource type="PackedScene" uid="uid://c2g8285r6v8s4" path="res://src/hospital/interactables/light_switch/unresponsive_light_switch.tscn" id="8_gu3yx"]
+[ext_resource type="PackedScene" uid="uid://ixep1on6bkg6" path="res://src/hospital/password_lock/password_lock_model1.tscn" id="8_p7bnl"]
+[ext_resource type="Script" path="res://src/hospital/interactables/boarded_door/boarded_door.gd" id="8_yk2gm"]
+[ext_resource type="AudioStream" uid="uid://nigkaw3rhvrp" path="res://assets/audio/spooky_ambience.mp3" id="9_o7wwy"]
+[ext_resource type="Script" path="res://src/hospital/interactables/password_lock/password_lock.gd" id="9_vg1jo"]
+[ext_resource type="AudioStream" uid="uid://cacy7qy4c2f1y" path="res://assets/audio/door_open.wav" id="10_7ao5f"]
+[ext_resource type="FontFile" uid="uid://fndurbsmmmrq" path="res://assets/fonts/youmurdererbb_reg.ttf" id="11_4mvd1"]
+[ext_resource type="PackedScene" uid="uid://dakho62b0xvhf" path="res://src/ui/inventory2/inventory.tscn" id="11_hjquf"]
+[ext_resource type="AudioStream" uid="uid://dvv6k70jkk8ih" path="res://assets/audio/door_close.wav" id="11_mqcuu"]
+[ext_resource type="PackedScene" uid="uid://bum73ne1l7f2r" path="res://src/hospital/interactables/crowbar/crowbar.tscn" id="11_tljw4"]
+[ext_resource type="AudioStream" uid="uid://eymm5kjw0f5x" path="res://assets/audio/locked_door.wav" id="14_dfamw"]
+[ext_resource type="Texture2D" uid="uid://bhax17fh0pi8m" path="res://assets/images/question.png" id="14_h20b3"]
+[ext_resource type="PackedScene" uid="uid://cjvadqvaojvlp" path="res://src/ui/dialogue/dialogue.tscn" id="15_2yqxc"]
+[ext_resource type="Script" path="res://src/classes/event_area.gd" id="18_2lxrd"]
+[ext_resource type="Script" path="res://src/hospital/flashbacks/sanity_test/sanity_test.gd" id="19_xx352"]
+[ext_resource type="Shader" path="res://shaders/noise_flow.gdshader" id="20_ewkwh"]
+[ext_resource type="Script" path="res://src/hospital/flashbacks/sanity_test/shadow_enemy.gd" id="21_t382i"]
+[ext_resource type="Shader" path="res://shaders/vhs.gdshader" id="22_atwn3"]
+[ext_resource type="Script" path="res://src/hospital/interactables/crowbar/crowbar.gd" id="22_b72n0"]
+[ext_resource type="Shader" path="res://shaders/chromatic_aberration.gdshader" id="25_4tgof"]
+
+[sub_resource type="Environment" id="Environment_wr0y4"]
+background_mode = 1
+background_color = Color(0.0235294, 0.0431373, 0.0509804, 1)
+reflected_light_source = 2
+sdfgi_read_sky_light = false
+glow_intensity = 0.12
+glow_bloom = 0.01
+glow_blend_mode = 0
+fog_enabled = true
+fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
+fog_light_energy = 0.01
+volumetric_fog_emission = Color(0.0705882, 0.0627451, 0.180392, 1)
+adjustment_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n5rit"]
+size = Vector3(1.70118, 2.00063, 0.179243)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lk3s5"]
+size = Vector3(1, 1.30189, 1.86592)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhayo"]
+size = Vector3(0.117091, 0.793485, 0.208854)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j36j6"]
+size = Vector3(1.89246, 1, 1.1979)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qsi67"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="Gradient" id="Gradient_07k74"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gs7m3"]
+gradient = SubResource("Gradient_07k74")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o4ysj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4453r"]
+noise = SubResource("FastNoiseLite_o4ysj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kscib"]
+render_priority = 0
+shader = ExtResource("20_ewkwh")
+shader_parameter/radius = 0.537
+shader_parameter/effectControl = 0.715
+shader_parameter/burnSpeed = 0.263
+shader_parameter/shape = 1.0
+shader_parameter/alpha = 0.781
+shader_parameter/tex = SubResource("GradientTexture2D_gs7m3")
+shader_parameter/textureNoise = SubResource("NoiseTexture2D_4453r")
+
+[sub_resource type="Gradient" id="Gradient_kwyrn"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3wsyf"]
+gradient = SubResource("Gradient_kwyrn")
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Animation" id="Animation_cwx0v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1.5708, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Blink:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g5j83"]
+resource_name = "blink"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Blink:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rt0ak"]
+resource_name = "turn_left"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1.5708, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_4dpps"]
+resource_name = "turn_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cnpe5"]
+_data = {
+"RESET": SubResource("Animation_cwx0v"),
+"blink": SubResource("Animation_g5j83"),
+"turn_left": SubResource("Animation_rt0ak"),
+"turn_right": SubResource("Animation_4dpps")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1w8ht"]
+shader = ExtResource("22_atwn3")
+shader_parameter/range = 0.1
+shader_parameter/noiseQuality = 20.3
+shader_parameter/noiseIntensity = 4.65814e-09
+shader_parameter/offsetIntensity = 3.25988e-09
+shader_parameter/colorOffsetIntensity = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_haflc"]
+shader = ExtResource("25_4tgof")
+shader_parameter/alpha = 0.387
+shader_parameter/scale = 1.02
+shader_parameter/strength = 11.09
+
+[node name="Hospital" type="Node3D"]
+process_mode = 1
+script = ExtResource("1_w6uh0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wr0y4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.124606, 0, -0.992206, 0, 1, 0, 0.992206, 0, -0.124606, 0, 0, 0)
+visible = false
+
+[node name="Bulb1" type="OmniLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1136, 14.2806, 21.1878)
+light_color = Color(0.760784, 0.678431, 0.607843, 1)
+shadow_enabled = true
+
+[node name="Bulb2" type="OmniLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.1532, 13.2855, 21.0605)
+light_color = Color(0.760784, 0.678431, 0.607843, 1)
+shadow_enabled = true
+
+[node name="Bulb3" type="OmniLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.98638, 0, -0.16448, 0, 1, 0, 0.16448, 0, 0.98638, -28.7833, 13.326, 20.9136)
+light_color = Color(0.760784, 0.678431, 0.607843, 1)
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.0595, 2.37406, -35.6355)
+light_specular = 14.246
+shadow_enabled = true
+omni_range = 230.439
+
+[node name="Player" parent="." instance=ExtResource("2_bmw56")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0406, 11.3035, 32.3096)
+floor_max_angle = 1.50273
+
+[node name="hospital1_model" parent="." instance=ExtResource("2_fv7hl")]
+
+[node name="BoardedDoor1" type="Node3D" parent="."]
+script = ExtResource("7_4nq3q")
+
+[node name="plank" parent="BoardedDoor1" instance=ExtResource("5_aco7u")]
+transform = Transform3D(0.009, 0, 0, 0, 0.00089294, -0.00895559, 0, 0.00895559, 0.00089294, -36.1118, 10.884, 22.8897)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BoardedDoor1"]
+collision_layer = 3
+script = ExtResource("8_yk2gm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoardedDoor1/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.2128, 11.6281, 22.8984)
+shape = SubResource("BoxShape3D_n5rit")
+
+[node name="PasswordLockModel" parent="." instance=ExtResource("8_p7bnl")]
+transform = Transform3D(0.0100854, 0, -0.117568, 0, 0.118, 0, 0.117568, 0, 0.0100854, -13.3991, 11.2777, 19.1586)
+
+[node name="PasswordLock" parent="PasswordLockModel" instance=ExtResource("7_y3kry")]
+transform = Transform3D(0.724315, 0, 8.44357, 0, 8.47458, 0, -8.44357, 0, 0.724315, -152.062, -95.5737, -127.013)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="PasswordLockModel" node_paths=PackedStringArray("Player")]
+collision_layer = 3
+script = ExtResource("9_vg1jo")
+Player = NodePath("../../Player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PasswordLockModel/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.765594, 0)
+shape = SubResource("BoxShape3D_lk3s5")
+
+[node name="Diaries" type="Node3D" parent="."]
+
+[node name="DiaryPage" parent="Diaries" instance=ExtResource("5_gkxit")]
+transform = Transform3D(0.640109, 0, -0.768284, 0, 1, 0, 0.768284, 0, 0.640109, -51.9986, 10.2838, 20.8217)
+page_number = 1
+page_content = "March 18, 1945
+
+Today marks our first breakthrough towards creating the Neurozymic Reactivation Compound (NRC) which is a neurochemical component designed to reanimate neural pathways, effectively bringing about the reanimation of deceased organisms. We have successfully synthesized the primary components of the NRC, achieving a crucial milestone in our research endeavors.
+
+Initial trials on laboratory specimens have shown promising results, with signs of neural reactivation and limited motor function restoration observed post-administration. Further refinement and testing are necessary to optimize the compound's efficacy and safety before proceeding to human trials. This breakthrough opens up unprecedented possibilities in the field of neuroregeneration and has the potential to revolutionize medical science as we know it."
+dialogue_line = "Press [I] to Open Inventory"
+delay = 2
+
+[node name="DiaryPage2" parent="Diaries" instance=ExtResource("5_gkxit")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6059, 10.2868, 22.0007)
+page_number = 2
+page_content = "March 25, 1945
+
+Following our initial breakthrough, our team has been tirelessly working to refine the Neurozymic Reactivation Compound (NRC) for broader application and increased effectiveness. Through rigorous experimentation and iterative adjustments to the compound's composition, we have made significant strides in enhancing its neural reactivation capabilities while minimizing adverse effects.
+
+In recent trials, we have observed encouraging outcomes in various animal models, demonstrating improved motor function restoration and cognitive responses post-administration of the optimized NRC formulation. Furthermore, histological analysis has revealed promising signs of neural tissue regeneration and synaptic reconnection in areas treated with the compound.
+
+However, challenges persist, particularly in ensuring the safety and stability of the NRC for human use. We are intensifying our efforts to conduct comprehensive toxicity assessments and long-term viability studies to mitigate any potential risks associated with its application.
+
+Additionally, discussions have commenced regarding the ethical implications and regulatory frameworks surrounding the introduction of such groundbreaking technology into medical practice. It is imperative that we proceed with caution, prioritizing thorough scrutiny and adherence to ethical guidelines to ensure the responsible advancement of our research.
+
+As we continue to refine the NRC and expand our understanding of its mechanisms, we remain committed to realizing its full potential in revolutionizing neuroregeneration and offering new hope for patients suffering from neurological disorders and injuries. Our journey towards transformative medical innovation has only just begun, and we are determined to overcome every obstacle in our pursuit of a brighter future for humanity."
+
+[node name="DiaryPage3" parent="Diaries" instance=ExtResource("5_gkxit")]
+transform = Transform3D(0.838404, 0.00485151, -0.545027, 0, 0.99996, 0.00890106, 0.545049, -0.00746269, 0.838371, -28.0033, 10.2838, 20.5684)
+page_number = 99
+page_content = "You messed it up."
+
+[node name="WallWritings" type="Node3D" parent="."]
+
+[node name="Label3D" type="Label3D" parent="WallWritings"]
+transform = Transform3D(0.146065, 0, -0.989275, 0, 1, 0, 0.989275, 0, 0.146065, -38.5121, 12.4778, 16.0881)
+shaded = true
+modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
+outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
+text = "7
+-
+1"
+font = ExtResource("11_4mvd1")
+font_size = 161
+outline_size = 0
+line_spacing = -50.0
+
+[node name="Label3D2" type="Label3D" parent="WallWritings"]
+transform = Transform3D(0.146065, 0, -0.989275, 0, 1, 0, 0.989275, 0, 0.146065, -41.4317, 12.4778, 26.7946)
+shaded = true
+modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
+outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
+text = "1
+-
+2"
+font = ExtResource("11_4mvd1")
+font_size = 161
+outline_size = 0
+line_spacing = -50.0
+
+[node name="Label3D3" type="Label3D" parent="WallWritings"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -36.3545, 12.239, 29.6531)
+shaded = true
+modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
+outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
+text = "3
+-
+5"
+font = ExtResource("11_4mvd1")
+font_size = 161
+outline_size = 0
+line_spacing = -50.0
+
+[node name="Label3D4" type="Label3D" parent="WallWritings"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -21.3654, 12.4778, 29.6211)
+shaded = true
+modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
+outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
+text = "9
+-
+3"
+font = ExtResource("11_4mvd1")
+font_size = 161
+outline_size = 0
+
+[node name="Label3D5" type="Label3D" parent="WallWritings"]
+transform = Transform3D(0.146065, 0, -0.989275, 0, 1, 0, 0.989275, 0, 0.146065, -30.8779, 12.4778, 17.0823)
+shaded = true
+modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
+outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
+text = "1
+-
+4"
+font = ExtResource("11_4mvd1")
+font_size = 161
+outline_size = 0
+line_spacing = -50.0
+
+[node name="Label3D6" type="Label3D" parent="WallWritings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7579, 11.8305, 10.1211)
+billboard = 1
+text = "Under Construction Ahead"
+font_size = 60
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="crowbar" parent="Items" instance=ExtResource("11_tljw4")]
+transform = Transform3D(-4.18842e-08, 1.812, 0.362227, -1, -8.26605e-08, 0, 1.25061e-08, -0.541042, 1.21313, -19.7786, 10.2881, 26.528)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Items/crowbar"]
+collision_layer = 2
+script = ExtResource("22_b72n0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Items/crowbar/StaticBody3D"]
+transform = Transform3D(1, 2.70894e-14, -5.32907e-15, -7.77156e-15, 1, 5.96046e-08, 4.44089e-15, -5.96046e-08, 1, 0, 0.0176868, 0.00788784)
+shape = SubResource("BoxShape3D_nhayo")
+
+[node name="Sprite3D" type="Sprite3D" parent="Items/crowbar"]
+transform = Transform3D(0.019, -3.05311e-16, 3.25963e-09, -3.33067e-16, 0.01, 1.86265e-09, -6.1933e-09, -9.31323e-10, 0.01, -0.33546, 0.0143423, 0.0503168)
+billboard = 1
+texture = ExtResource("14_h20b3")
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Zombie" parent="Enemies" instance=ExtResource("3_whsvx")]
+transform = Transform3D(1.176, 0, 0, 0, 1.176, 0, 0, 0, 1.176, -18.7672, 10.2881, 13.6677)
+animation = "Sleep"
+
+[node name="Zombie2" parent="Enemies" instance=ExtResource("3_whsvx")]
+transform = Transform3D(1.259, 0, 0, 0, 1.259, 0, 0, 0, 1.259, -13.7226, 10.4149, 18.0396)
+animation = "Run"
+
+[node name="LightSwirches" type="Node3D" parent="."]
+
+[node name="LightSwitch" parent="LightSwirches" node_paths=PackedStringArray("Light") instance=ExtResource("7_lg8hd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.4433, 11.7081, 25.7351)
+Light = NodePath("../../WorldEnvironment/Bulb1")
+
+[node name="LightSwitch2" parent="LightSwirches" node_paths=PackedStringArray("Light") instance=ExtResource("7_lg8hd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.7639, 11.8214, 22.9112)
+Light = NodePath("../../WorldEnvironment/Bulb2")
+
+[node name="LightSwitch3" parent="LightSwirches" node_paths=PackedStringArray("Light") instance=ExtResource("7_lg8hd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2971, 11.4077, 19.2591)
+Light = NodePath("../../WorldEnvironment/Bulb3")
+
+[node name="LightSwitch4" parent="LightSwirches" instance=ExtResource("7_lg8hd")]
+
+[node name="UnresponsiveLightSwitch" parent="LightSwirches" instance=ExtResource("8_gu3yx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.5816, 11.428, 19.281)
+
+[node name="UnresponsiveLightSwitch2" parent="LightSwirches" instance=ExtResource("8_gu3yx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.9559, 11.4129, 19.2468)
+
+[node name="UnresponsiveLightSwitch3" parent="LightSwirches" instance=ExtResource("8_gu3yx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1573, 11.8137, 22.8952)
+
+[node name="UnresponsiveLightSwitch4" parent="LightSwirches" instance=ExtResource("8_gu3yx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.6284, 11.8388, 22.9097)
+
+[node name="UnresponsiveLightSwitch5" parent="LightSwirches" instance=ExtResource("8_gu3yx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5298, 11.428, 19.2523)
+
+[node name="UnresponsiveLightSwitch6" parent="LightSwirches" instance=ExtResource("8_gu3yx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8453, 11.8041, 22.937)
+
+[node name="Areas" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.8796, 11.8527, 31.9836)
+script = ExtResource("18_2lxrd")
+dialogue = "I need to find all the missing pages"
+delay = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.424236, 0, -1.31811)
+shape = SubResource("BoxShape3D_j36j6")
+
+[node name="Area3D2" type="Area3D" parent="Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5108, 12.452, 15.3689)
+script = ExtResource("18_2lxrd")
+dialogue = "What is this thing?"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10071, -1.15378, 2.01222)
+shape = SubResource("BoxShape3D_qsi67")
+
+[node name="Flashbacks" type="Node3D" parent="."]
+
+[node name="SanityTest" type="Node3D" parent="Flashbacks"]
+script = ExtResource("19_xx352")
+
+[node name="EnemySpawner" type="Node3D" parent="Flashbacks/SanityTest"]
+
+[node name="Sprite3D" type="Sprite3D" parent="Flashbacks/SanityTest/EnemySpawner"]
+transform = Transform3D(2.34983, 0, 0, 0, 3.1547, 0, 0, 0, 1, 48.4607, 1.84017, -38.8903)
+material_override = SubResource("ShaderMaterial_kscib")
+modulate = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_3wsyf")
+script = ExtResource("21_t382i")
+
+[node name="Camera3D" type="Camera3D" parent="Flashbacks/SanityTest"]
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, 48.3856, 1.86346, -31.6493)
+fov = 60.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flashbacks/SanityTest/Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_cnpe5")
+}
+
+[node name="Blink" type="ColorRect" parent="Flashbacks/SanityTest"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="VHS" type="ColorRect" parent="Flashbacks/SanityTest"]
+material = SubResource("ShaderMaterial_1w8ht")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="SerumTest" type="Node3D" parent="Flashbacks"]
+
+[node name="CenterMessage" type="Label" parent="."]
+offset_left = -2.0
+offset_top = 334.0
+offset_right = 1150.0
+offset_bottom = 647.0
+theme_override_font_sizes/font_size = 15
+text = "Hello There"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chroma" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_haflc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dialogue" parent="." instance=ExtResource("15_2yqxc")]
+mouse_filter = 2
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_dhnhr")]
+visible = false
+
+[node name="Inventory" parent="." instance=ExtResource("11_hjquf")]
+process_mode = 2
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_o7wwy")
+volume_db = -15.0
+
+[node name="DoorOpen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_7ao5f")
+volume_db = -15.0
+
+[node name="DoorClose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_mqcuu")
+volume_db = -15.0
+
+[node name="DoorLocked" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_dfamw")
+
+[connection signal="NotPointingAtInteractable" from="Player" to="." method="_on_player_not_pointing_at_interactable"]
+[connection signal="PointingAtInteractable" from="Player" to="." method="_on_player_pointing_at_interactable"]
+[connection signal="passwordSuccess" from="PasswordLockModel/PasswordLock" to="." method="_on_password_lock_success"]
+[connection signal="body_entered" from="Areas/Area3D" to="Areas/Area3D" method="_on_body_entered"]
+[connection signal="body_entered" from="Areas/Area3D2" to="Areas/Area3D2" method="_on_body_entered"]
+[connection signal="animation_finished" from="Flashbacks/SanityTest/Camera3D/AnimationPlayer" to="Flashbacks/SanityTest" method="_on_animation_player_animation_finished"]

@@ -1,0 +1,330 @@
+[gd_scene load_steps=24 format=3 uid="uid://bo2ywhw3kchj1"]
+
+[ext_resource type="Script" path="res://src/menu/scene.gd" id="1_u6jx3"]
+[ext_resource type="PackedScene" uid="uid://bkxe65n27rbg4" path="res://assets/models/diary/crimson_ledger.glb" id="2_3wvas"]
+[ext_resource type="Shader" path="res://shaders/chromatic_aberration.gdshader" id="3_3ww7q"]
+[ext_resource type="Shader" path="res://shaders/invert.gdshader" id="3_l7lkt"]
+[ext_resource type="Shader" path="res://shaders/crt.gdshader" id="4_l5b8k"]
+[ext_resource type="Script" path="res://src/menu/moveSelector.gd" id="4_tkrqs"]
+[ext_resource type="FontFile" uid="uid://dpwthrlix1hrk" path="res://assets/fonts/Base 02.ttf" id="5_usewi"]
+[ext_resource type="Shader" path="res://shaders/gaussian_blur.gdshader" id="7_cv0e7"]
+[ext_resource type="AudioStream" uid="uid://bpdc3eaqa32oi" path="res://assets/audio/horror-intro-music.mp3" id="8_8hydd"]
+[ext_resource type="Script" path="res://src/menu/black_fade.gd" id="9_vpo60"]
+
+[sub_resource type="Environment" id="Environment_c7g61"]
+background_mode = 1
+background_color = Color(0.00784314, 0.0117647, 0.0156863, 1)
+ambient_light_color = Color(0.286275, 0.278431, 0.788235, 1)
+ambient_light_energy = 2.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eg3jx"]
+shader = ExtResource("4_l5b8k")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5e0w2"]
+line_spacing = 10.0
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_h3g57"]
+line_spacing = 8.0
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_c5v07"]
+line_spacing = 5.0
+font_size = 22
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fys0"]
+shader = ExtResource("3_l7lkt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1slr4"]
+shader = ExtResource("7_cv0e7")
+shader_parameter/blur_amount = 0.5
+shader_parameter/blackness = 0.7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h52i2"]
+bg_color = Color(0.168627, 0.168627, 0.168627, 0.827451)
+
+[sub_resource type="Theme" id="Theme_28j5r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bxh24"]
+shader = ExtResource("3_3ww7q")
+shader_parameter/alpha = 1.0
+shader_parameter/scale = 1.0
+shader_parameter/strength = 3.0
+
+[sub_resource type="Animation" id="Animation_ree4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o7cp8"]
+resource_name = "fade_in"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_soslc"]
+_data = {
+"RESET": SubResource("Animation_ree4j"),
+"fade_in": SubResource("Animation_o7cp8")
+}
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u6jx3")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1162, 654)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.412, -0.0022499)
+
+[node name="crimson_ledger" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_3wvas")]
+transform = Transform3D(0.552956, -0.463211, 0.692586, 0.799067, 0.530324, -0.283282, -0.236075, 0.710065, 0.663383, -0.0980248, 1.48781, -2.25597)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_c7g61")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75222, 3.28814, -1.38755)
+light_color = Color(1, 0.917647, 0.670588, 1)
+light_energy = 3.192
+shadow_enabled = true
+
+[node name="CRT" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_eg3jx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 450.0
+offset_right = 146.0
+offset_bottom = 619.0
+
+[node name="StartButton" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Start"
+label_settings = SubResource("LabelSettings_5e0w2")
+
+[node name="SettingButton" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Settings"
+label_settings = SubResource("LabelSettings_h3g57")
+
+[node name="Credits" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Credits"
+label_settings = SubResource("LabelSettings_5e0w2")
+
+[node name="ExitButton" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Exit
+"
+label_settings = SubResource("LabelSettings_c5v07")
+
+[node name="BackBufferCopy3" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="Selector" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_4fys0")
+layout_mode = 0
+offset_left = 43.0
+offset_top = 452.0
+offset_right = 151.0
+offset_bottom = 482.0
+script = ExtResource("4_tkrqs")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 604.0
+offset_top = 562.0
+offset_right = 1126.0
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("5_usewi")
+theme_override_font_sizes/font_size = 40
+text = "Echoes from the Past"
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+
+[node name="Blur" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_1slr4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Settings" type="Panel" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 166.0
+offset_bottom = -174.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h52i2")
+
+[node name="Title" type="Label" parent="Settings"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 1157.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 18
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Settings"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 39.0
+offset_right = 811.0
+offset_bottom = 43.0
+
+[node name="Grid" type="GridContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -47.0
+offset_right = 252.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_28j5r")
+theme_override_constants/h_separation = 109
+theme_override_constants/v_separation = 7
+columns = 2
+
+[node name="Audio" type="Label" parent="Settings/Grid"]
+layout_mode = 2
+text = "Audio"
+
+[node name="AudioInput" type="HSlider" parent="Settings/Grid"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+value = 75.0
+allow_greater = true
+
+[node name="MouseSensitivity" type="Label" parent="Settings/Grid"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+
+[node name="MouseSensitivityInput" type="HSlider" parent="Settings/Grid"]
+layout_mode = 2
+max_value = 3000.0
+value = 1200.0
+
+[node name="LightingQuality" type="Label" parent="Settings/Grid"]
+layout_mode = 2
+text = "Lighting Quality"
+
+[node name="LightingQualityInput" type="OptionButton" parent="Settings/Grid"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Normal"
+popup/item_0/id = 0
+popup/item_1/text = "High"
+popup/item_1/id = 1
+
+[node name="VSync" type="Label" parent="Settings/Grid"]
+layout_mode = 2
+text = "V-Sync"
+
+[node name="VSyncInput" type="CheckButton" parent="Settings/Grid"]
+layout_mode = 2
+size_flags_horizontal = 0
+button_pressed = true
+
+[node name="RestoreDefault" type="Button" parent="Settings/Grid"]
+layout_mode = 2
+text = "Restore Default Settings"
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="Glitch" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_bxh24")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BlackCover" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("9_vpo60")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BlackCover"]
+libraries = {
+"": SubResource("AnimationLibrary_soslc")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_8hydd")
+volume_db = -30.0
+autoplay = true

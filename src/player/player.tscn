@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://b315dhm3wxa5d"]
+
+[ext_resource type="Script" path="res://src/player/player.gd" id="1_o7lmo"]
+[ext_resource type="Texture2D" path="res://assets/images/flashlight_texture.dds" id="2_c1ja0"]
+[ext_resource type="AudioStream" uid="uid://bwm87uuf1n61h" path="res://assets/audio/footsteps_hallway.mp3" id="3_78r08"]
+[ext_resource type="PackedScene" uid="uid://bb3mbi1yrvcox" path="res://src/hospital/interactables/crowbar/no_depth_crowbar.tscn" id="3_lrne1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ir5s5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dghuq"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_migpa"]
+
+[sub_resource type="Animation" id="Animation_dmebk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.80062, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t8imi"]
+resource_name = "head_bob"
+length = 0.55
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.80062, 0), Vector3(0, 0.945101, 0), Vector3(0, 0.80062, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jxxa0"]
+_data = {
+"RESET": SubResource("Animation_dmebk"),
+"head_bob": SubResource("Animation_t8imi")
+}
+
+[node name="Player" type="CharacterBody3D"]
+floor_max_angle = 1.5708
+script = ExtResource("1_o7lmo")
+JUMP_VELOCITY = 3.0
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80062, 0)
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="Head/Camera3D"]
+transform = Transform3D(0.5, 0, 0, 0, -4.37114e-08, -0.5, 0, 1, -2.18557e-08, 0, -0.0232878, -0.0843729)
+shape = SubResource("BoxShape3D_ir5s5")
+target_position = Vector3(0, -1.412, 0)
+collision_mask = 2
+
+[node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D"]
+light_color = Color(1, 0.878431, 0.588235, 1)
+light_energy = 9.957
+light_projector = ExtResource("2_c1ja0")
+shadow_enabled = true
+shadow_bias = 6.03
+spot_range = 12.0
+spot_attenuation = 2.73208
+spot_angle = 70.0
+spot_angle_attenuation = 2.21914
+
+[node name="ItemLight" type="SpotLight3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.158786, -0.0999929, -0.0606078)
+layers = 512
+light_color = Color(1, 0.878431, 0.588235, 1)
+light_energy = 0.2
+light_cull_mask = 4294966784
+shadow_bias = 6.03
+spot_attenuation = 2.73208
+spot_angle = 52.3
+
+[node name="no_depth_crowbar" parent="Head/Camera3D" instance=ExtResource("3_lrne1")]
+transform = Transform3D(-0.689279, 0, 0.724496, 0, 1, 0, -0.724496, 0, -0.689279, 0.40656, -0.265343, -0.426684)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_dghuq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+visible = false
+mesh = SubResource("CapsuleMesh_migpa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jxxa0")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_78r08")

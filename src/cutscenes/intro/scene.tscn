@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsaqekt883qsj"]
+
+[ext_resource type="Script" path="res://src/cutscenes/intro/scene.gd" id="1_i8y8g"]
+[ext_resource type="Script" path="res://src/cutscenes/intro/MeshInstance3D.gd" id="2_j43xm"]
+[ext_resource type="Texture2D" uid="uid://c5xhbkgjyrrh1" path="res://assets/images/member_photos/Nogadas_DIT.jpeg" id="2_l1w62"]
+[ext_resource type="AudioStream" uid="uid://dhiwbj505cfx8" path="res://assets/audio/ElevenLabs_2024-03-18T10_26_43_Ethan.mp3" id="3_k571u"]
+
+[sub_resource type="Environment" id="Environment_1bb6v"]
+background_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6cmo"]
+albedo_texture = ExtResource("2_l1w62")
+
+[sub_resource type="SphereMesh" id="SphereMesh_mmdxi"]
+material = SubResource("StandardMaterial3D_s6cmo")
+
+[node name="intro" type="Node3D"]
+script = ExtResource("1_i8y8g")
+
+[node name="DialogueBox" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = 560.0
+offset_right = 1155.0
+offset_bottom = 651.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="DialogueBox"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -4.0
+offset_right = 1156.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1bb6v")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.978148, 0.00566459, 0.207837, 0.180896, 0.515961, 0.837293, -0.102494, 0.856593, -0.505711, -0.492198, 0, -3.62896)
+mesh = SubResource("SphereMesh_mmdxi")
+script = ExtResource("2_j43xm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_k571u")
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]

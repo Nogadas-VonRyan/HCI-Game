@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=3 uid="uid://c18urj6outl0x"]
+
+[ext_resource type="Script" path="res://src/house/scene.gd" id="1_2g3mh"]
+[ext_resource type="PackedScene" uid="uid://deswb2pjt7dbd" path="res://src/house/house.tscn" id="1_cc1p1"]
+[ext_resource type="PackedScene" uid="uid://b315dhm3wxa5d" path="res://src/player/player.tscn" id="2_eowgm"]
+[ext_resource type="Texture2D" uid="uid://c4vw820d2bh1q" path="res://assets/images/night.png" id="4_o165g"]
+[ext_resource type="Texture2D" uid="uid://bhax17fh0pi8m" path="res://assets/images/question.png" id="4_w7vc3"]
+[ext_resource type="Shader" path="res://shaders/invert.gdshader" id="5_dhb20"]
+[ext_resource type="PackedScene" uid="uid://ihttvdx7bwrs" path="res://src/house/light_switch.tscn" id="6_c8f1m"]
+[ext_resource type="PackedScene" uid="uid://dm7jpruhmqmyw" path="res://src/ui/inventory/inventory.tscn" id="8_sst7u"]
+[ext_resource type="PackedScene" uid="uid://75ch7lkl7t6e" path="res://src/ui/pause_menu/pause_menu.tscn" id="9_eb23i"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_sc1yy"]
+ground_color = Color(0, 0, 0.0313726, 1)
+energy_multiplier = 0.3
+night_sky = ExtResource("4_o165g")
+
+[sub_resource type="Sky" id="Sky_f1hmc"]
+sky_material = SubResource("PhysicalSkyMaterial_sc1yy")
+
+[sub_resource type="Environment" id="Environment_327m2"]
+background_mode = 1
+background_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+sky = SubResource("Sky_f1hmc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_36nuy"]
+shader = ExtResource("5_dhb20")
+
+[node name="House" type="Node3D"]
+script = ExtResource("1_2g3mh")
+
+[node name="house_model" parent="." instance=ExtResource("1_cc1p1")]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0.0146065, 0.0631371, 0.0088501)
+
+[node name="Player" parent="." instance=ExtResource("2_eowgm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.07234, 1.09645, -3.05979)
+floor_max_angle = 1.39626
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights"]
+environment = SubResource("Environment_327m2")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0416, 2.0113, -7.16892)
+light_color = Color(0.317647, 0.317647, 0.317647, 1)
+omni_range = 213.754
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0487, 2.73015, -14.271)
+light_color = Color(0.317647, 0.317647, 0.317647, 1)
+omni_range = 213.754
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(-0.891344, -0.132492, -0.433535, -0.447671, 0.10665, 0.887815, -0.0713916, 0.98543, -0.154375, 0, 0, 0)
+visible = false
+light_color = Color(0, 0, 0, 1)
+
+[node name="Markers" type="Node3D" parent="."]
+
+[node name="LightMarker" type="Sprite3D" parent="Markers"]
+transform = Transform3D(0.0532663, 0, 0, 0, 0.0463216, 0, 0, 0, 1, 17.1719, 2.128, -12.8984)
+material_overlay = SubResource("ShaderMaterial_36nuy")
+billboard = 1
+no_depth_test = true
+texture = ExtResource("4_w7vc3")
+
+[node name="BookMarker" type="Sprite3D" parent="Markers"]
+transform = Transform3D(0.0907962, 0, 0, 0, 0.067538, 0, 0, 0, 1, 20.6779, 2.31754, -14.2185)
+visible = false
+material_overlay = SubResource("ShaderMaterial_36nuy")
+billboard = 1
+no_depth_test = true
+texture = ExtResource("4_w7vc3")
+
+[node name="Label3D" type="Label3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0748, 1.48575, -14.1754)
+visible = false
+billboard = 1
+text = "Press [Enter] to proceed to Hospital"
+
+[node name="LightSwitch" parent="." instance=ExtResource("6_c8f1m")]
+transform = Transform3D(0.000474951, 0, 0, 0, 0.00066953, 0, 0, 0, 0.0006723, 17.1645, 1.52179, -12.9536)
+
+[node name="Inventory" parent="." instance=ExtResource("8_sst7u")]
+visible = false
+
+[node name="CenterMessage" type="Label" parent="."]
+offset_left = -2.0
+offset_top = 334.0
+offset_right = 1150.0
+offset_bottom = 647.0
+theme_override_font_sizes/font_size = 23
+text = "Hello There"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource("9_eb23i")]
+
+[connection signal="NotPointingAtInteractable" from="Player" to="." method="_on_player_not_pointing_at_interactable"]
+[connection signal="PointingAtInteractable" from="Player" to="." method="_on_player_pointing_at_interactable"]

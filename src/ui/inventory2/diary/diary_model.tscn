@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b21kuj0vedbc2"]
+
+[ext_resource type="PackedScene" uid="uid://bkxe65n27rbg4" path="res://assets/models/diary/crimson_ledger.glb" id="1_nx1ml"]
+
+[node name="crimson_ledger" instance=ExtResource("1_nx1ml")]

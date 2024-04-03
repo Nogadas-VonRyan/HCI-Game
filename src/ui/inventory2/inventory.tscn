@@ -1,0 +1,173 @@
+[gd_scene load_steps=10 format=3 uid="uid://dakho62b0xvhf"]
+
+[ext_resource type="Script" path="res://src/ui/inventory2/inventory.gd" id="1_15gks"]
+[ext_resource type="PackedScene" uid="uid://b21kuj0vedbc2" path="res://src/ui/inventory2/diary/diary_model.tscn" id="2_hm7en"]
+[ext_resource type="Shader" path="res://shaders/gaussian_blur.gdshader" id="2_q1eru"]
+[ext_resource type="Script" path="res://src/classes/diary_label.gd" id="3_1yug6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1wb47"]
+shader = ExtResource("2_q1eru")
+shader_parameter/blur_amount = 1.4
+shader_parameter/blackness = 0.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80bu6"]
+bg_color = Color(0.054902, 0.054902, 0.054902, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q43bu"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 0)
+
+[sub_resource type="Environment" id="Environment_6j86g"]
+background_mode = 1
+background_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a1iv2"]
+bg_color = Color(0.054902, 0.054902, 0.054902, 0.901961)
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_15gks")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1wb47")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="InventoryPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -294.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_80bu6")
+
+[node name="Label" type="Label" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 9.0
+offset_right = 105.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 29
+text = "Diary"
+
+[node name="HSeparator" type="HSeparator" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 52.0
+offset_right = 185.0
+offset_bottom = 56.0
+
+[node name="DiaryPages" type="Panel" parent="InventoryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 69.0
+offset_right = -31.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q43bu")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryPanel/DiaryPages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/DiaryPages/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Hint" type="Label" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = -567.0
+offset_top = 566.0
+offset_right = -313.0
+offset_bottom = 592.0
+theme_override_font_sizes/font_size = 15
+text = "Drag [Left Mouse Button] to Rotate"
+
+[node name="DiaryModel" type="SubViewportContainer" parent="."]
+layout_mode = 2
+offset_left = 244.0
+offset_top = 71.5
+offset_right = 579.0
+offset_bottom = 573.5
+mouse_filter = 0
+
+[node name="SubViewport" type="SubViewport" parent="DiaryModel"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(335, 502)
+render_target_update_mode = 4
+
+[node name="crimson_ledger" parent="DiaryModel/SubViewport" instance=ExtResource("2_hm7en")]
+transform = Transform3D(-0.0211826, 0.13589, 0.990498, 0.996074, -0.0823049, 0.0325936, 0.0859519, 0.987299, -0.133613, 0, -13.8272, -2.22902)
+
+[node name="Camera3D" type="Camera3D" parent="DiaryModel/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8272, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="DiaryModel/SubViewport"]
+environment = SubResource("Environment_6j86g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="DiaryModel/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.301721, -13.0615, -0.921309)
+
+[node name="DiaryPanel" type="ScrollContainer" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -414.0
+offset_top = -252.0
+offset_right = 414.0
+offset_bottom = 264.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a1iv2")
+
+[node name="Label" type="Label" parent="DiaryPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "March 25, 1945
+
+Following our initial breakthrough, our team has been tirelessly working to refine the Neurozymic Reactivation Compound (NRC) for broader application and increased effectiveness. Through rigorous experimentation and iterative adjustments to the compound's composition, we have made significant strides in enhancing its neural reactivation capabilities while minimizing adverse effects.
+
+In recent trials, we have observed encouraging outcomes in various animal models, demonstrating improved motor function restoration and cognitive responses post-administration of the optimized NRC formulation. Furthermore, histological analysis has revealed promising signs of neural tissue regeneration and synaptic reconnection in areas treated with the compound.
+
+However, challenges persist, particularly in ensuring the safety and stability of the NRC for human use. We are intensifying our efforts to conduct comprehensive toxicity assessments and long-term viability studies to mitigate any potential risks associated with its application.
+
+Additionally, discussions have commenced regarding the ethical implications and regulatory frameworks surrounding the introduction of such groundbreaking technology into medical practice. It is imperative that we proceed with caution, prioritizing thorough scrutiny and adherence to ethical guidelines to ensure the responsible advancement of our research.
+
+As we continue to refine the NRC and expand our understanding of its mechanisms, we remain committed to realizing its full potential in revolutionizing neuroregeneration and offering new hope for patients suffering from neurological disorders and injuries. Our journey towards transformative medical innovation has only just begun, and we are determined to overcome every obstacle in our pursuit of a brighter future for humanity."
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("3_1yug6")
+
+[connection signal="gui_input" from="DiaryModel" to="." method="_on_sub_viewport_container_gui_input"]

@@ -3,6 +3,10 @@ extends Control
 @onready var MenuRect = Rect2($Menu.position,$Menu.size)
 @onready var Selector = $Selector
 
+func _ready():
+	$SubViewportContainer/SubViewport/Camera3D2.current = true
+	pass
+
 func _process(_delta):
 	$SubViewportContainer/SubViewport/crimson_ledger.rotation.x += 0.001
 	$SubViewportContainer/SubViewport/crimson_ledger.rotation.y += 0.001

@@ -12,7 +12,7 @@ var hasCrowbar = false
 var stopTransition: bool = false
 
 func _ready():
-	start_sanity_test()
+	#start_sanity_test()
 	PauseMenu.visible = false
 	Audio.stream.loop = true
 	Audio.play()
@@ -43,7 +43,9 @@ func _unhandled_input(_event):
 			
 	if Input.is_action_just_pressed("Quit"):
 		get_tree().quit()
-
+	if Input.is_action_just_pressed("1"):
+		$Player/Head/Camera3D.current = true
+		
 func _on_player_pointing_at_interactable(collided):
 	CenterMessage.visible = true
 	CenterMessage.text = collided.message

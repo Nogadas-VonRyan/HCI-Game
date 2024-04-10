@@ -1,8 +1,9 @@
-[gd_scene load_steps=51 format=3 uid="uid://chqv51kxireew"]
+[gd_scene load_steps=52 format=3 uid="uid://chqv51kxireew"]
 
 [ext_resource type="Script" path="res://src/hospital/scene.gd" id="1_w6uh0"]
 [ext_resource type="PackedScene" uid="uid://b315dhm3wxa5d" path="res://src/player/player.tscn" id="2_bmw56"]
 [ext_resource type="PackedScene" uid="uid://dcyk6v1ang01t" path="res://src/hospital/hospital1_model.tscn" id="2_fv7hl"]
+[ext_resource type="Script" path="res://src/menu/light_flicker.gd" id="2_ljin6"]
 [ext_resource type="PackedScene" uid="uid://3nvx4ows87tu" path="res://src/enemy/zombie/zombie.tscn" id="3_whsvx"]
 [ext_resource type="PackedScene" uid="uid://cihvj0lqp8sqn" path="res://src/hospital/boarded_door1/plank.tscn" id="5_aco7u"]
 [ext_resource type="PackedScene" uid="uid://cewufb3f4fjxd" path="res://src/hospital/interactables/diary/diary_page.tscn" id="5_gkxit"]
@@ -184,11 +185,11 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1w8ht"]
 shader = ExtResource("22_atwn3")
-shader_parameter/range = 0.1
-shader_parameter/noiseQuality = 20.3
+shader_parameter/range = 0.035
+shader_parameter/noiseQuality = 10.0
 shader_parameter/noiseIntensity = 4.65814e-09
 shader_parameter/offsetIntensity = 3.25988e-09
-shader_parameter/colorOffsetIntensity = 0.5
+shader_parameter/colorOffsetIntensity = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_haflc"]
 shader = ExtResource("25_4tgof")
@@ -210,17 +211,31 @@ visible = false
 [node name="Bulb1" type="OmniLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.1136, 14.2806, 21.1878)
 light_color = Color(0.760784, 0.678431, 0.607843, 1)
+light_energy = 0.5
 shadow_enabled = true
+omni_range = 4.0
 
 [node name="Bulb2" type="OmniLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.1532, 13.2855, 21.0605)
 light_color = Color(0.760784, 0.678431, 0.607843, 1)
+light_energy = 0.5
 shadow_enabled = true
+omni_range = 4.0
 
 [node name="Bulb3" type="OmniLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.98638, 0, -0.16448, 0, 1, 0, 0.16448, 0, 0.98638, -28.7833, 13.326, 20.9136)
+transform = Transform3D(0.98638, 0, -0.16448, 0, 1, 0, 0.16448, 0, 0.98638, -36.4364, 12.7885, 20.9136)
 light_color = Color(0.760784, 0.678431, 0.607843, 1)
+light_energy = 0.5
 shadow_enabled = true
+omni_range = 4.0
+script = ExtResource("2_ljin6")
+
+[node name="Bulb4" type="OmniLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.2264, 13.2855, 21.0605)
+light_color = Color(0.760784, 0.678431, 0.607843, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 4.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.0595, 2.37406, -35.6355)

@@ -7,14 +7,24 @@ extends Control
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	get_tree().paused = true
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel") and not $"..".Inventory.visible:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		hide()
-		$"..".stopTransition = true
-		get_tree().paused = false
-		pass
+	if Input.is_action_just_pressed("ui_cancel"):
+		print("step")
+	
+	if Input.is_action_just_pressed("ui_cancel") and $Settings.visible:
+		$Settings.hide()
+		$Background.show()
+		$Selector.show()
+		print("success")
+		
+#	elif Input.is_action_just_pressed("ui_cancel") and not $"..".Inventory.visible:
+#		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+#		hide()
+#		$"..".stopTransition = true
+#		get_tree().paused = false
+#		print("jumpscare")
 
 
 func setSelectorPosition(node: Label):
@@ -38,6 +48,10 @@ func _on_resume_button_gui_input(_event):
 
 func _on_settings_button_gui_input(_event):
 	setSelectorPosition(SettingsButtom)
+	if Input.is_action_just_pressed("Click"):
+		$Settings.show()
+		$Background.hide()
+		$Selector.hide()
 
 
 func _on_main_menu_button_gui_input(_event):

@@ -8,7 +8,7 @@ var ItemInventory: Array[String] = []
 var DiaryPageInventory: Array[Interactable] = []
 
 func _unhandled_input(_event):
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") and not $"../PauseMenu".visible:
 		closeInventory()
 	
 func closeInventory():

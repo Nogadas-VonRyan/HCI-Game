@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.0", "Mobile")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
+[autoload]
+
+InputHandler="*res://src/autoload/input_handler.gd"
+
 [display]
 
 window/size/mode=3

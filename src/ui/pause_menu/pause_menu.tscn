@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://75ch7lkl7t6e"]
+[gd_scene load_steps=7 format=3 uid="uid://75ch7lkl7t6e"]
 
 [ext_resource type="Script" path="res://src/ui/pause_menu/pause_menu.gd" id="1_mqnwv"]
 [ext_resource type="Shader" path="res://shaders/invert.gdshader" id="2_ouwwy"]
 [ext_resource type="Shader" path="res://shaders/gaussian_blur.gdshader" id="2_vwss6"]
+[ext_resource type="PackedScene" uid="uid://brhxslfytfwdj" path="res://src/ui/settings/settings.tscn" id="4_hcji5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_to7dg"]
 shader = ExtResource("2_vwss6")
@@ -11,11 +12,6 @@ shader_parameter/blackness = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_preen"]
 shader = ExtResource("2_ouwwy")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mivan"]
-bg_color = Color(0.168627, 0.168627, 0.168627, 0.827451)
-
-[sub_resource type="Theme" id="Theme_yojxe"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -94,98 +90,9 @@ offset_right = 632.0
 offset_bottom = 299.0
 mouse_filter = 2
 
-[node name="Settings" type="Panel" parent="."]
+[node name="Settings" parent="." instance=ExtResource("4_hcji5")]
 visible = false
-self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 166.0
-offset_bottom = -174.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mivan")
-
-[node name="Title" type="Label" parent="Settings"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 10.0
-offset_right = 1157.0
-offset_bottom = 59.0
-theme_override_font_sizes/font_size = 18
-text = "Settings"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="Settings"]
-layout_mode = 0
-offset_left = 360.0
-offset_top = 39.0
-offset_right = 811.0
-offset_bottom = 43.0
-
-[node name="Grid" type="GridContainer" parent="Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -252.0
-offset_top = -47.0
-offset_right = 252.0
-offset_bottom = 97.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_yojxe")
-theme_override_constants/h_separation = 109
-theme_override_constants/v_separation = 7
-columns = 2
-
-[node name="Audio" type="Label" parent="Settings/Grid"]
-layout_mode = 2
-text = "Audio"
-
-[node name="AudioInput" type="HSlider" parent="Settings/Grid"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-value = 75.0
-allow_greater = true
-
-[node name="MouseSensitivity" type="Label" parent="Settings/Grid"]
-layout_mode = 2
-text = "Mouse Sensitivity"
-
-[node name="MouseSensitivityInput" type="HSlider" parent="Settings/Grid"]
-layout_mode = 2
-max_value = 3000.0
-value = 1200.0
-
-[node name="LightingQuality" type="Label" parent="Settings/Grid"]
-layout_mode = 2
-text = "Lighting Quality"
-
-[node name="LightingQualityInput" type="OptionButton" parent="Settings/Grid"]
-layout_mode = 2
-item_count = 2
-selected = 0
-popup/item_0/text = "Normal"
-popup/item_0/id = 0
-popup/item_1/text = "High"
-popup/item_1/id = 1
-
-[node name="VSync" type="Label" parent="Settings/Grid"]
-layout_mode = 2
-text = "V-Sync"
-
-[node name="VSyncInput" type="CheckButton" parent="Settings/Grid"]
-layout_mode = 2
-size_flags_horizontal = 0
-button_pressed = true
-
-[node name="RestoreDefault" type="Button" parent="Settings/Grid"]
-layout_mode = 2
-text = "Restore Default Settings"
 
 [connection signal="gui_input" from="Background" to="." method="_on_background_gui_input"]
 [connection signal="gui_input" from="Background/HBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_gui_input"]

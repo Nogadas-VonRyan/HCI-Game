@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsaqekt883qsj"]
+[gd_scene load_steps=9 format=3 uid="uid://bsaqekt883qsj"]
 
 [ext_resource type="Script" path="res://src/cutscenes/intro/scene.gd" id="1_i8y8g"]
 [ext_resource type="Script" path="res://src/cutscenes/intro/MeshInstance3D.gd" id="2_j43xm"]
 [ext_resource type="Texture2D" uid="uid://c5xhbkgjyrrh1" path="res://assets/images/member_photos/Nogadas_DIT.jpeg" id="2_l1w62"]
 [ext_resource type="AudioStream" uid="uid://dhiwbj505cfx8" path="res://assets/audio/ElevenLabs_2024-03-18T10_26_43_Ethan.mp3" id="3_k571u"]
+[ext_resource type="Script" path="res://src/menu/audio_stream.gd" id="5_g523l"]
 
 [sub_resource type="Environment" id="Environment_1bb6v"]
 background_mode = 1
@@ -50,5 +51,7 @@ visible = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_k571u")
 autoplay = true
+script = ExtResource("5_g523l")
+offset = 10
 
 [node name="Timer" type="Timer" parent="."]

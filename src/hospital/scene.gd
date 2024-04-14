@@ -19,6 +19,7 @@ func _ready():
 
 func _input(_event):
 	if Input.is_action_pressed("Click"):
+		print(AudioHandler.master_volume)
 		if hasCrowbar:
 			$Player/Head/Camera3D/no_depth_crowbar/AnimationPlayer.play("swing")
 			$Player/Head/Camera3D/no_depth_crowbar/AnimationPlayer.queue("RESET")
@@ -104,7 +105,10 @@ func _on_password_lock_success():
 	$Player/Head/Camera3D.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Player.disable_player = false
-	
+	$Enemies/Zombie2.visible = true
+	$Enemies/Zombie2.follow = true
+	$Enemies/Zombie2/CollisionShape3D.disabled = false
+	$Dialogue.setDialogue("[Shift] to Run",5)
 
 func start_sanity_test():
 	$Flashbacks/SanityTest/Camera3D.current = true

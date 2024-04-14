@@ -13,6 +13,8 @@
 [ext_resource type="Shader" path="res://shaders/gaussian_blur.gdshader" id="7_cv0e7"]
 [ext_resource type="AudioStream" uid="uid://bpdc3eaqa32oi" path="res://assets/audio/horror-intro-music.mp3" id="8_8hydd"]
 [ext_resource type="Script" path="res://src/menu/black_fade.gd" id="9_vpo60"]
+[ext_resource type="PackedScene" uid="uid://brhxslfytfwdj" path="res://src/ui/settings/settings.tscn" id="13_miq75"]
+[ext_resource type="Script" path="res://src/menu/audio_stream.gd" id="15_y5s54"]
 
 [sub_resource type="Environment" id="Environment_c7g61"]
 background_mode = 1
@@ -42,11 +44,6 @@ shader = ExtResource("3_l7lkt")
 shader = ExtResource("7_cv0e7")
 shader_parameter/blur_amount = 0.5
 shader_parameter/blackness = 0.7
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h52i2"]
-bg_color = Color(0.168627, 0.168627, 0.168627, 0.827451)
-
-[sub_resource type="Theme" id="Theme_28j5r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bxh24"]
 shader = ExtResource("3_3ww7q")
@@ -125,6 +122,7 @@ environment = SubResource("Environment_c7g61")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75222, 3.28814, -1.38755)
+visible = false
 light_color = Color(1, 0.917647, 0.670588, 1)
 light_energy = 3.192
 shadow_enabled = true
@@ -237,98 +235,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Settings" type="Panel" parent="."]
+[node name="Settings" parent="." instance=ExtResource("13_miq75")]
 visible = false
-self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 166.0
-offset_bottom = -174.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_h52i2")
-
-[node name="Title" type="Label" parent="Settings"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 10.0
-offset_right = 1157.0
-offset_bottom = 59.0
-theme_override_font_sizes/font_size = 18
-text = "Settings"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="Settings"]
-layout_mode = 0
-offset_left = 360.0
-offset_top = 39.0
-offset_right = 811.0
-offset_bottom = 43.0
-
-[node name="Grid" type="GridContainer" parent="Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -252.0
-offset_top = -47.0
-offset_right = 252.0
-offset_bottom = 97.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_28j5r")
-theme_override_constants/h_separation = 109
-theme_override_constants/v_separation = 7
-columns = 2
-
-[node name="Audio" type="Label" parent="Settings/Grid"]
-layout_mode = 2
-text = "Audio"
-
-[node name="AudioInput" type="HSlider" parent="Settings/Grid"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-value = 75.0
-allow_greater = true
-
-[node name="MouseSensitivity" type="Label" parent="Settings/Grid"]
-layout_mode = 2
-text = "Mouse Sensitivity"
-
-[node name="MouseSensitivityInput" type="HSlider" parent="Settings/Grid"]
-layout_mode = 2
-max_value = 3000.0
-value = 1200.0
-
-[node name="LightingQuality" type="Label" parent="Settings/Grid"]
-layout_mode = 2
-text = "Lighting Quality"
-
-[node name="LightingQualityInput" type="OptionButton" parent="Settings/Grid"]
-layout_mode = 2
-item_count = 2
-selected = 0
-popup/item_0/text = "Normal"
-popup/item_0/id = 0
-popup/item_1/text = "High"
-popup/item_1/id = 1
-
-[node name="VSync" type="Label" parent="Settings/Grid"]
-layout_mode = 2
-text = "V-Sync"
-
-[node name="VSyncInput" type="CheckButton" parent="Settings/Grid"]
-layout_mode = 2
-size_flags_horizontal = 0
-button_pressed = true
-
-[node name="RestoreDefault" type="Button" parent="Settings/Grid"]
-layout_mode = 2
-text = "Restore Default Settings"
 
 [node name="BackBufferCopy2" type="BackBufferCopy" parent="."]
 copy_mode = 2
@@ -363,3 +272,5 @@ libraries = {
 stream = ExtResource("8_8hydd")
 volume_db = -30.0
 autoplay = true
+script = ExtResource("15_y5s54")
+offset = -10

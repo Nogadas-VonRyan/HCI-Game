@@ -744,6 +744,9 @@ shape = SubResource("ConcavePolygonShape3D_tb62g")
 [node name="Hospital01_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/Hospital01" index="92"]
 visible = false
 
+[node name="door4_SM" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="1"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -52.02, 10.2384, 26.1326)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door4_SM/door4_SM_door4m1_0" index="0"]
 collision_layer = 3
 collision_mask = 2

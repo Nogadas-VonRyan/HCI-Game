@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b315dhm3wxa5d"]
+[gd_scene load_steps=12 format=3 uid="uid://b315dhm3wxa5d"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_o7lmo"]
 [ext_resource type="Texture2D" path="res://assets/images/flashlight_texture.dds" id="2_c1ja0"]
 [ext_resource type="AudioStream" uid="uid://bwm87uuf1n61h" path="res://assets/audio/footsteps_hallway.mp3" id="3_78r08"]
 [ext_resource type="PackedScene" uid="uid://bb3mbi1yrvcox" path="res://src/hospital/interactables/crowbar/no_depth_crowbar.tscn" id="3_lrne1"]
+[ext_resource type="Script" path="res://src/menu/audio_stream.gd" id="5_rnw1c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ir5s5"]
 
@@ -104,3 +105,5 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_78r08")
+script = ExtResource("5_rnw1c")
+offset = 10

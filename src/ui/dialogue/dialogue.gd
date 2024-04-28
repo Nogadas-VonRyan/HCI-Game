@@ -2,17 +2,23 @@ extends Control
 
 
 @onready var Dialogue = $Label
-@onready var timer = $Timer
+@onready var start_timer = $StartTimer
+@onready var end_timer = $EndTimer
+@onready var textDialogue: String
 
-func setDialogue(newDialogue: String, delay: int):
-	if timer.time_left > 0:
+func setDialogue(newDialogue: String,start_delay: int, end_delay: int):
+	if start_timer.time_left > 0 || end_timer.time_left > 0:
 		return
-	Dialogue.text = newDialogue
-	timer.start(delay)
+	textDialogue = newDialogue
+	start_timer.start(start_delay)
+	end_timer.start(start_delay + end_delay)
 
 func clearDialogue():
 	Dialogue.text = ""
+	textDialogue = ""
 
-func _on_timer_timeout():
+func _on_start_timer_timeout():
+	Dialogue.text = textDialogue
+
+func _on_end_timer_timeout():
 	clearDialogue()
-	

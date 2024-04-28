@@ -8,22 +8,22 @@ extends Control
 func _ready():
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
-func _input(event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		print("step")
+func _input(_event):
+	if Input.is_action_just_pressed("Click"):
+		print(get_tree().paused)
 	
+	# Close the pause menu submenus first
 	if Input.is_action_just_pressed("ui_cancel") and $Settings.visible:
 		$Settings.hide()
 		$Background.show()
 		$Selector.show()
-		print("success")
-		
+	
+	# Close it for real
 	elif Input.is_action_just_pressed("ui_cancel") and visible:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		hide()
 		$"..".stopTransition = true
 		get_tree().paused = false
-		print("jumpscare")
 
 
 func setSelectorPosition(node: Label):

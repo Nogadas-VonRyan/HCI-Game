@@ -1943,3 +1943,4 @@ shape = SubResource("SphereShape3D_6bvn3")
 disabled = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+ignore_y = false

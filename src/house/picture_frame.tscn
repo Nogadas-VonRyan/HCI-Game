@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://be0jiwetpufp5"]
+
+[ext_resource type="PackedScene" uid="uid://bswn1h4jtmtsg" path="res://assets/models/picture_frame/picture_frame.glb" id="1_l8dps"]
+[ext_resource type="Texture2D" uid="uid://bae13cbfvwjc8" path="res://assets/images/grandfather_image.jpg" id="2_d43ga"]
+
+[node name="picture_frame" instance=ExtResource("1_l8dps")]
+
+[node name="Sprite3D" type="Sprite3D" parent="Sketchfab_model/root/GLTF_SceneRootNode/Plane_0" index="2"]
+transform = Transform3D(-0.288956, -0.00496715, 0.000875837, 4.36557e-09, -0.0501844, -0.28461, 0.00504377, -0.284566, 0.0501767, 0, 0.210145, -0.298008)
+shaded = true
+texture = ExtResource("2_d43ga")

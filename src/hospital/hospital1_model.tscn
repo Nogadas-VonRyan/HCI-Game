@@ -745,7 +745,7 @@ shape = SubResource("ConcavePolygonShape3D_tb62g")
 visible = false
 
 [node name="door4_SM" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="1"]
-transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -52.02, 10.2384, 26.1326)
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -52.02, 0, 26.133)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door4_SM/door4_SM_door4m1_0" index="0"]
 collision_layer = 3
@@ -764,6 +764,9 @@ libraries = {
 "": SubResource("AnimationLibrary_n57fo")
 }
 
+[node name="door3_SM" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="2"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -42.09, 0, 23.25)
+
 [node name="door3_SM_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM" index="0"]
 visible = false
 
@@ -779,6 +782,9 @@ shape = SubResource("ConvexPolygonShape3D_mvbl6")
 libraries = {
 "": SubResource("AnimationLibrary_dpjiq")
 }
+
+[node name="door3_SM001" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="3"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -34.45, 0, 23.25)
 
 [node name="door3_SM001_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM001" index="0"]
 visible = false
@@ -797,6 +803,9 @@ libraries = {
 "": SubResource("AnimationLibrary_xwyk1")
 }
 
+[node name="door3_SM002" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="4"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -26.81, 0, 23.25)
+
 [node name="door3_SM002_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM002" index="0"]
 visible = false
 
@@ -812,6 +821,9 @@ shape = SubResource("ConvexPolygonShape3D_o3wfe")
 libraries = {
 "": SubResource("AnimationLibrary_7ipy2")
 }
+
+[node name="door3_SM003" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="5"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -19.15, 0, 23.25)
 
 [node name="door3_SM003_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM003" index="0"]
 visible = false
@@ -829,6 +841,9 @@ libraries = {
 "": SubResource("AnimationLibrary_8vvna")
 }
 
+[node name="door5_SM" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="6"]
+transform = Transform3D(0.01, 0, 0, 0, 2.22045e-18, 0.01, 0, -0.01, 2.22045e-18, -14.35, 0, 19.11)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door5_SM/door5_SM_door5m_0" index="0"]
 collision_layer = 3
 collision_priority = 2.0
@@ -843,6 +858,9 @@ shape = SubResource("ConvexPolygonShape3D_cb4k7")
 libraries = {
 "": SubResource("AnimationLibrary_an0ix")
 }
+
+[node name="door3_SM004" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="7"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -19.17, 0, 19.05)
 
 [node name="door3_SM004_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM004" index="0"]
 visible = false
@@ -860,6 +878,9 @@ libraries = {
 "": SubResource("AnimationLibrary_3qk3c")
 }
 
+[node name="door3_SM005" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="8"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -26.8, 0, 18.99)
+
 [node name="door3_SM005_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM005" index="0"]
 visible = false
 
@@ -875,6 +896,9 @@ shape = SubResource("ConvexPolygonShape3D_ck8eo")
 libraries = {
 "": SubResource("AnimationLibrary_hs4lg")
 }
+
+[node name="door3_SM006" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="9"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -34.43, 0, 19.02)
 
 [node name="door3_SM006_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM006" index="0"]
 visible = false
@@ -892,6 +916,9 @@ libraries = {
 "": SubResource("AnimationLibrary_8wxos")
 }
 
+[node name="door3_SM007" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="10"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -42.09, 0, 18.98)
+
 [node name="door3_SM007_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM007" index="0"]
 visible = false
 
@@ -908,3 +935,36 @@ root_node = NodePath("../door3_SM007_door3m_0")
 libraries = {
 "": SubResource("AnimationLibrary_de8ca")
 }
+
+[node name="door6_SM" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="11"]
+transform = Transform3D(0.01, 0, 0, 0, 2.22045e-18, 0.01, 0, -0.01, 2.22045e-18, 18.72, 0, -0.201)
+
+[node name="door6_SM001" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="12"]
+transform = Transform3D(0.01, 0, 0, 0, 2.22045e-18, 0.01, 0, -0.01, 2.22045e-18, 18.72, 0, 1.039)
+
+[node name="door3_SM008" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="13"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, 11.42, 0, 8.03)
+
+[node name="door3_SM009" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="14"]
+transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, 18.14, 0, 27.77)
+
+[node name="door3_SM010" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="15"]
+transform = Transform3D(0.00989272, 0.00146083, -8.70724e-11, 0, 5.96046e-10, 0.01, 0.00146083, -0.00989272, 5.89652e-10, 15.904, 0, 27.77)
+
+[node name="door3_SM011" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="16"]
+transform = Transform3D(4.01339e-09, -0.01, 5.55111e-19, -5.55111e-19, 2.22045e-18, 0.01, -0.01, -4.01339e-09, 0, 5.54, 0, 39.46)
+
+[node name="door5_SM001" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="17"]
+transform = Transform3D(1.62921e-09, 0.01, -1.66533e-18, -5.55111e-19, 2.22045e-18, 0.01, 0.01, -1.62921e-09, 1.11022e-18, 43.88, 0, -12.98)
+
+[node name="door1_SM" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="18"]
+transform = Transform3D(0.01, 0, 0, 0, 2.22045e-18, 0.01, 0, -0.01, 2.22045e-18, 41.13, -10, -31.87)
+
+[node name="door7_SM" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="19"]
+transform = Transform3D(4.37114e-10, -0.01, 5.55111e-19, -5.55111e-19, 0, 0.01, -0.01, -4.37114e-10, -2.22045e-18, 39.864, -10, -36.307)
+
+[node name="door1_SM001" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="20"]
+transform = Transform3D(0.01, 0, 0, 0, 2.22045e-18, 0.01, 0, -0.01, 2.22045e-18, 44.09, -10, -38.65)
+
+[node name="door2_SM" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="21"]
+transform = Transform3D(1.62921e-09, 0.01, -1.66533e-18, -5.55111e-19, 2.22045e-18, 0.01, 0.01, -1.62921e-09, 1.11022e-18, 46.52, -10, -34.39)

@@ -6,7 +6,7 @@ signal NotPointingAtInteractable
 
 @onready var Raycast: ShapeCast3D = $Head/Camera3D/ShapeCast3D 
 @export var SPEED = 2.0
-@export var JUMP_VELOCITY = 4.5
+@export var JUMP_VELOCITY = 20.5
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 var disable_player = false
@@ -21,7 +21,7 @@ func _ready():
 	$AudioStreamPlayer.stream.loop = true
 
 
-func _unhandled_input(event):	
+func _input(event):	
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x / InputHandler.mouse_sensitivity
 		$Head/Camera3D.rotation.x -= event.relative.y / InputHandler.mouse_sensitivity

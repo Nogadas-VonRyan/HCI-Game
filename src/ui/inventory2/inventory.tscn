@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dakho62b0xvhf"]
+[gd_scene load_steps=12 format=3 uid="uid://dakho62b0xvhf"]
 
 [ext_resource type="Script" path="res://src/ui/inventory2/inventory.gd" id="1_15gks"]
 [ext_resource type="PackedScene" uid="uid://b21kuj0vedbc2" path="res://src/ui/inventory2/diary/diary_model.tscn" id="2_hm7en"]
 [ext_resource type="Shader" path="res://shaders/gaussian_blur.gdshader" id="2_q1eru"]
 [ext_resource type="Script" path="res://src/classes/diary_label.gd" id="3_1yug6"]
+[ext_resource type="Shader" path="res://shaders/invert.gdshader" id="5_3sjlv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1wb47"]
 shader = ExtResource("2_q1eru")
@@ -22,6 +23,9 @@ background_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a1iv2"]
 bg_color = Color(0.054902, 0.054902, 0.054902, 0.901961)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i0rla"]
+shader = ExtResource("5_3sjlv")
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -51,6 +55,7 @@ anchor_bottom = 1.0
 offset_left = -294.0
 grow_horizontal = 0
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_80bu6")
 
 [node name="Label" type="Label" parent="InventoryPanel"]
@@ -104,7 +109,8 @@ offset_top = 566.0
 offset_right = -313.0
 offset_bottom = 592.0
 theme_override_font_sizes/font_size = 15
-text = "Drag [Left Mouse Button] to Rotate"
+text = "Click and Hold to rotate"
+horizontal_alignment = 1
 
 [node name="DiaryModel" type="SubViewportContainer" parent="."]
 layout_mode = 2
@@ -170,4 +176,19 @@ vertical_alignment = 1
 autowrap_mode = 3
 script = ExtResource("3_1yug6")
 
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+position = Vector2(0, -1)
+copy_mode = 2
+
+[node name="Selector" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_i0rla")
+layout_mode = 0
+offset_left = 885.0
+offset_top = 258.0
+offset_right = 1118.0
+offset_bottom = 359.0
+mouse_filter = 2
+
+[connection signal="gui_input" from="." to="." method="_on_main_inventory_gui_input"]
 [connection signal="gui_input" from="DiaryModel" to="." method="_on_sub_viewport_container_gui_input"]

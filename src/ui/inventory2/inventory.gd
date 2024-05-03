@@ -44,7 +44,7 @@ func addDiaryPage(diaryObject: Interactable):
 	newDiaryLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	newDiaryLabel.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	newDiaryLabel.page_content = diaryObject.page_content
-	newDiaryLabel.connect("gui_input",newDiaryLabel.display)
+	newDiaryLabel.connect("gui_input",Callable(newDiaryLabel.display).bind($Selector))
 	newDiaryLabel.text = "Diary Page #" + str(diaryObject.page_number)
 	newDiaryLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	
@@ -75,3 +75,7 @@ func _on_sub_viewport_container_gui_input(_event):
 		diary_model.rotation.y += (next.x - prev.x) * sensitivity
 		diary_model.rotation.z += (next.y - prev.y) * sensitivity
 		prev = next
+
+
+func _on_main_inventory_gui_input(event):
+	$Selector.visible = false

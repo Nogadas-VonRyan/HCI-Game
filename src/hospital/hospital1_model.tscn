@@ -747,6 +747,9 @@ visible = false
 [node name="door4_SM" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="1"]
 transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e-18, 0.01, -1.50996e-09, 0.01, 3.33067e-18, -52.02, 0, 26.133)
 
+[node name="door4_SM_door4m1_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door4_SM" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1028.22)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door4_SM/door4_SM_door4m1_0" index="0"]
 collision_layer = 3
 collision_mask = 2
@@ -770,6 +773,9 @@ transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e
 [node name="door3_SM_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM" index="0"]
 visible = false
 
+[node name="door3_SM_door3m_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1026.4)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM/door3_SM_door3m_0" index="0"]
 collision_layer = 3
 script = ExtResource("3_qhbnc")
@@ -789,12 +795,15 @@ transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e
 [node name="door3_SM001_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM001" index="0"]
 visible = false
 
+[node name="door3_SM001_door3m_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM001" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1024.22)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM001/door3_SM001_door3m_0" index="0"]
 collision_layer = 3
 script = ExtResource("3_qhbnc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM001/door3_SM001_door3m_0/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, -4.41016e-24, 0, 1, 0, -7.93918e-24, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, -1.76452e-23, 0, 1, 0, -7.93929e-24, 0, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_y0bes")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM001" index="2"]
@@ -808,6 +817,9 @@ transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e
 
 [node name="door3_SM002_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM002" index="0"]
 visible = false
+
+[node name="door3_SM002_door3m_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM002" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1016.1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM002/door3_SM002_door3m_0" index="0"]
 collision_layer = 3
@@ -828,6 +840,9 @@ transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e
 [node name="door3_SM003_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM003" index="0"]
 visible = false
 
+[node name="door3_SM003_door3m_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM003" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1027.45)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM003/door3_SM003_door3m_0" index="0"]
 collision_layer = 3
 script = ExtResource("3_qhbnc")
@@ -843,6 +858,9 @@ libraries = {
 
 [node name="door5_SM" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode" index="6"]
 transform = Transform3D(0.01, 0, 0, 0, 2.22045e-18, 0.01, 0, -0.01, 2.22045e-18, -14.35, 0, 19.11)
+
+[node name="door5_SM_door5m_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door5_SM" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1020.39)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door5_SM/door5_SM_door5m_0" index="0"]
 collision_layer = 3
@@ -865,12 +883,15 @@ transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e
 [node name="door3_SM004_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM004" index="0"]
 visible = false
 
+[node name="door3_SM004_door3m_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM004" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1038.62)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM004/door3_SM004_door3m_0" index="0"]
 collision_layer = 3
 script = ExtResource("3_qhbnc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM004/door3_SM004_door3m_0/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, -4.41016e-24, 0, 1, 0, -7.93918e-24, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, -1.76452e-23, 0, 1, 0, -7.93929e-24, 0, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_um4hp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM004" index="2"]
@@ -883,6 +904,9 @@ transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e
 
 [node name="door3_SM005_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM005" index="0"]
 visible = false
+
+[node name="door3_SM005_door3m_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM005" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1027.66)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM005/door3_SM005_door3m_0" index="0"]
 collision_layer = 3
@@ -903,6 +927,9 @@ transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e
 [node name="door3_SM006_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM006" index="0"]
 visible = false
 
+[node name="door3_SM006_door3m_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM006" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1029.22)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM006/door3_SM006_door3m_0" index="0"]
 collision_layer = 3
 script = ExtResource("3_qhbnc")
@@ -921,6 +948,9 @@ transform = Transform3D(-0.01, -1.50996e-09, 1.22465e-18, 1.22465e-18, -4.44089e
 
 [node name="door3_SM007_GLASS_Dark_Inst_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM007" index="0"]
 visible = false
+
+[node name="door3_SM007_door3m_0" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM007" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1024.05)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Hospital_part1_lowFBX/RootNode/door3_SM007/door3_SM007_door3m_0" index="0"]
 collision_layer = 3

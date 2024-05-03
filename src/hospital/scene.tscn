@@ -34,6 +34,7 @@
 [ext_resource type="Script" path="res://src/menu/audio_stream.gd" id="29_tcmyi"]
 
 [sub_resource type="Environment" id="Environment_wr0y4"]
+background_mode = 1
 background_color = Color(0.0235294, 0.0431373, 0.0509804, 1)
 reflected_light_source = 2
 sdfgi_read_sky_light = false
@@ -305,7 +306,8 @@ Today marks our first breakthrough towards creating the Neurozymic Reactivation 
 
 Initial trials on laboratory specimens have shown promising results, with signs of neural reactivation and limited motor function restoration observed post-administration. Further refinement and testing are necessary to optimize the compound's efficacy and safety before proceeding to human trials. This breakthrough opens up unprecedented possibilities in the field of neuroregeneration and has the potential to revolutionize medical science as we know it."
 dialogue_line = "Press [I] to Open Inventory"
-delay = 2
+start_delay = 1
+end_delay = 2
 
 [node name="DiaryPage2" parent="Diaries" instance=ExtResource("5_gkxit")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6059, 10.2868, 22.0007)
@@ -470,7 +472,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8453, 11.8041, 22.937)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.8796, 11.8527, 31.9836)
 script = ExtResource("18_2lxrd")
 dialogue = "I need to find all the missing pages"
-delay = 4
+end_delay = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.424236, 0, -1.31811)
@@ -480,6 +482,7 @@ shape = SubResource("BoxShape3D_j36j6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5108, 12.452, 15.3689)
 script = ExtResource("18_2lxrd")
 dialogue = "What is this thing?"
+end_delay = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10071, -1.15378, 2.01222)
@@ -537,7 +540,6 @@ offset_top = 334.0
 offset_right = 1150.0
 offset_bottom = 647.0
 theme_override_font_sizes/font_size = 15
-text = "Hello There"
 horizontal_alignment = 1
 vertical_alignment = 1
 

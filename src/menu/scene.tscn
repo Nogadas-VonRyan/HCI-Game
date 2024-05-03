@@ -159,6 +159,7 @@ script = ExtResource("5_2otj6")
 range = 98
 
 [node name="CRT" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_eg3jx")
 layout_mode = 1
 anchors_preset = 15
@@ -178,24 +179,28 @@ offset_bottom = 619.0
 
 [node name="StartButton" type="Label" parent="Menu"]
 layout_mode = 2
+mouse_filter = 0
 theme_override_font_sizes/font_size = 22
 text = "Start"
 label_settings = SubResource("LabelSettings_5e0w2")
 
 [node name="SettingButton" type="Label" parent="Menu"]
 layout_mode = 2
+mouse_filter = 0
 theme_override_font_sizes/font_size = 22
 text = "Settings"
 label_settings = SubResource("LabelSettings_h3g57")
 
-[node name="Credits" type="Label" parent="Menu"]
+[node name="CreditButton" type="Label" parent="Menu"]
 layout_mode = 2
+mouse_filter = 0
 theme_override_font_sizes/font_size = 22
 text = "Credits"
 label_settings = SubResource("LabelSettings_5e0w2")
 
 [node name="ExitButton" type="Label" parent="Menu"]
 layout_mode = 2
+mouse_filter = 0
 theme_override_font_sizes/font_size = 22
 text = "Exit
 "
@@ -205,12 +210,14 @@ label_settings = SubResource("LabelSettings_c5v07")
 copy_mode = 2
 
 [node name="Selector" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_4fys0")
 layout_mode = 0
 offset_left = 43.0
 offset_top = 452.0
 offset_right = 151.0
 offset_bottom = 482.0
+mouse_filter = 2
 script = ExtResource("4_tkrqs")
 
 [node name="Title" type="Label" parent="."]
@@ -274,3 +281,9 @@ volume_db = -30.0
 autoplay = true
 script = ExtResource("15_y5s54")
 offset = -10
+
+[connection signal="gui_input" from="." to="." method="_on_main_gui_input"]
+[connection signal="gui_input" from="Menu/StartButton" to="." method="_on_start_button_gui_input"]
+[connection signal="gui_input" from="Menu/SettingButton" to="." method="_on_setting_button_gui_input"]
+[connection signal="gui_input" from="Menu/CreditButton" to="." method="_on_credits_gui_input"]
+[connection signal="gui_input" from="Menu/ExitButton" to="." method="_on_exit_button_gui_input"]

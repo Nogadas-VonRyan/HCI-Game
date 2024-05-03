@@ -12,7 +12,6 @@ var hasCrowbar = false
 var stopTransition: bool = false
 
 func _ready():
-	#start_sanity_test()
 	PauseMenu.visible = false
 	Audio.stream.loop = true
 	Audio.play()

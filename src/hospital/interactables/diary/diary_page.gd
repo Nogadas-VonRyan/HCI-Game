@@ -5,7 +5,8 @@ extends Interactable
 @export_multiline var page_content: String
 
 @export_multiline var dialogue_line: String
-@export var delay: int
+@export var start_delay: int
+@export var end_delay: int
 var disable_dialogue: bool = false
 
 func _ready():
@@ -16,4 +17,4 @@ func _ready():
 func interact():
 	visible = false
 	message = ""
-	$"../../Dialogue".setDialogue(dialogue_line,delay)
+	$"../../Dialogue".setDialogue(dialogue_line,start_delay,end_delay)

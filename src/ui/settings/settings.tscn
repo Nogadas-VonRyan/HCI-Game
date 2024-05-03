@@ -73,28 +73,6 @@ max_value = 3000.0
 value = 1200.0
 script = ExtResource("2_m3ann")
 
-[node name="LightingQuality" type="Label" parent="Grid"]
-layout_mode = 2
-text = "Lighting Quality"
-
-[node name="LightingQualityInput" type="OptionButton" parent="Grid"]
-layout_mode = 2
-item_count = 2
-selected = 0
-popup/item_0/text = "Normal"
-popup/item_0/id = 0
-popup/item_1/text = "High"
-popup/item_1/id = 1
-
-[node name="VSync" type="Label" parent="Grid"]
-layout_mode = 2
-text = "V-Sync"
-
-[node name="VSyncInput" type="CheckButton" parent="Grid"]
-layout_mode = 2
-size_flags_horizontal = 0
-button_pressed = true
-
 [node name="RestoreDefault" type="Button" parent="Grid"]
 layout_mode = 2
 text = "Restore Default Settings"

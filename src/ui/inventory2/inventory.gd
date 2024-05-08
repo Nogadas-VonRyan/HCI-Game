@@ -1,15 +1,31 @@
 extends Control
 
 
-#@onready var ItemContainer = $InventoryPanel/HBoxContainer/CenterContainer/Items
-@onready var DiaryPageContainer = $InventoryPanel/DiaryPages/ScrollContainer/VBoxContainer
+@onready var DiaryPageContainer := $InventoryPanel/DiaryPages/ScrollContainer/VBoxContainer
 
 var ItemInventory: Array[String] = []
 var DiaryPageInventory: Array[Interactable] = []
 
+
+func _ready():
+	$Selector.visible = false
+	addDiaryPageWithoutObject(99,"
+		Hello, my grandson.\n\nIf you're reading this, then I must have been long gone from this world already.
+		
+		I have a lot to tell you but I'm afraid I don't have much time left before it happens.
+		You have to go back to where I used to work. 
+		There, you will find all the answers. I hope. 
+		Thank you for everything, Paul. 
+		I'll miss you. 
+		
+		Grandpa Minalabag
+		04311")
+
+
 func _unhandled_input(_event):
 	if Input.is_action_just_pressed("ui_cancel") and not $"../PauseMenu".visible:
 		closeInventory()
+	
 	
 func closeInventory():
 	if $DiaryPanel.visible == true:
@@ -21,6 +37,15 @@ func closeInventory():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		$"..".stopTransition = true
 		get_tree().paused = false
+
+
+func labelDesigner(label):
+	label.mouse_filter = Control.MOUSE_FILTER_STOP
+	label.custom_minimum_size = Vector2(0,100)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+
 
 func openDiaryPanel(contents: String):
 	$DiaryPanel/Label.text = contents
@@ -34,23 +59,31 @@ func closeDiaryPanel():
 
 
 func addDiaryPage(diaryObject: Interactable):
-	#adding to array of references
 	DiaryPageInventory.append(diaryObject)
 	
-	#adding to container
 	var newDiaryLabel = DiaryLabel.new()
-	newDiaryLabel.mouse_filter = Control.MOUSE_FILTER_STOP
-	newDiaryLabel.custom_minimum_size = Vector2(0,100)
-	newDiaryLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	newDiaryLabel.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	newDiaryLabel.page_content = diaryObject.page_content
-	newDiaryLabel.connect("gui_input",Callable(newDiaryLabel.display).bind($Selector))
 	newDiaryLabel.text = "Diary Page #" + str(diaryObject.page_number)
-	newDiaryLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	newDiaryLabel.connect("gui_input",Callable(newDiaryLabel.display).bind($Selector))
+	labelDesigner(newDiaryLabel)
 	
-	if DiaryPageInventory.size() == 1:
+	if DiaryPageContainer.get_child_count() == 0:
 		DiaryPageContainer.add_child(HSeparator.new())
-		pass
+
+	DiaryPageContainer.add_child(newDiaryLabel)
+	DiaryPageContainer.add_child(HSeparator.new())
+
+
+func addDiaryPageWithoutObject(page_number: int, page_content: String):
+	var newDiaryLabel = DiaryLabel.new()
+	newDiaryLabel.page_content = page_content
+	newDiaryLabel.text = "Diary Page #" + str(page_number)
+	newDiaryLabel.connect("gui_input",Callable(newDiaryLabel.display).bind($Selector))
+	labelDesigner(newDiaryLabel)
+	
+	if DiaryPageContainer.get_child_count() == 0:
+		DiaryPageContainer.add_child(HSeparator.new())
+	
 	DiaryPageContainer.add_child(newDiaryLabel)
 	DiaryPageContainer.add_child(HSeparator.new())
 
@@ -77,5 +110,5 @@ func _on_sub_viewport_container_gui_input(_event):
 		prev = next
 
 
-func _on_main_inventory_gui_input(event):
+func _on_main_inventory_gui_input(_event):
 	$Selector.visible = false

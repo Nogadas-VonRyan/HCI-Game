@@ -7,11 +7,16 @@ extends Control
 @onready var textDialogue: String
 
 func setDialogue(newDialogue: String,start_delay: int, end_delay: int):
-	if floor(start_timer.time_left) > 0 || floor(end_timer.time_left) > 0:
+	if floor(end_timer.time_left) > 0:
 		return
+	
 	textDialogue = newDialogue
-	start_timer.start(start_delay)
+	if start_delay == 0:
+		Dialogue.text = textDialogue
+	else:
+		start_timer.start(start_delay)
 	end_timer.start(start_delay + end_delay)
+
 
 func clearDialogue():
 	Dialogue.text = ""

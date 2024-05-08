@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dakho62b0xvhf"]
+[gd_scene load_steps=11 format=3 uid="uid://dakho62b0xvhf"]
 
 [ext_resource type="Script" path="res://src/ui/inventory2/inventory.gd" id="1_15gks"]
 [ext_resource type="PackedScene" uid="uid://b21kuj0vedbc2" path="res://src/ui/inventory2/diary/diary_model.tscn" id="2_hm7en"]
 [ext_resource type="Shader" path="res://shaders/gaussian_blur.gdshader" id="2_q1eru"]
-[ext_resource type="Script" path="res://src/classes/diary_label.gd" id="3_1yug6"]
 [ext_resource type="Shader" path="res://shaders/invert.gdshader" id="5_3sjlv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1wb47"]
@@ -85,6 +84,7 @@ offset_right = -31.0
 offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q43bu")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="InventoryPanel/DiaryPages"]
@@ -95,11 +95,13 @@ anchor_bottom = 1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/DiaryPages/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 alignment = 1
 
 [node name="Hint" type="Label" parent="InventoryPanel"]
@@ -161,20 +163,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_a1iv2")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "March 25, 1945
+text = "Hello, my grandson.
 
-Following our initial breakthrough, our team has been tirelessly working to refine the Neurozymic Reactivation Compound (NRC) for broader application and increased effectiveness. Through rigorous experimentation and iterative adjustments to the compound's composition, we have made significant strides in enhancing its neural reactivation capabilities while minimizing adverse effects.
-
-In recent trials, we have observed encouraging outcomes in various animal models, demonstrating improved motor function restoration and cognitive responses post-administration of the optimized NRC formulation. Furthermore, histological analysis has revealed promising signs of neural tissue regeneration and synaptic reconnection in areas treated with the compound.
-
-However, challenges persist, particularly in ensuring the safety and stability of the NRC for human use. We are intensifying our efforts to conduct comprehensive toxicity assessments and long-term viability studies to mitigate any potential risks associated with its application.
-
-Additionally, discussions have commenced regarding the ethical implications and regulatory frameworks surrounding the introduction of such groundbreaking technology into medical practice. It is imperative that we proceed with caution, prioritizing thorough scrutiny and adherence to ethical guidelines to ensure the responsible advancement of our research.
-
-As we continue to refine the NRC and expand our understanding of its mechanisms, we remain committed to realizing its full potential in revolutionizing neuroregeneration and offering new hope for patients suffering from neurological disorders and injuries. Our journey towards transformative medical innovation has only just begun, and we are determined to overcome every obstacle in our pursuit of a brighter future for humanity."
+		If you're reading this, then I must have been long gone from this world already.
+		
+I have a lot to tell you but I'm afraid I don't have much time left before it happens.
+You have to go back to where I used to work. 
+There, you will find all the answers. I hope. 
+		
+- Grandfather Paul
+	04311"
 vertical_alignment = 1
-autowrap_mode = 3
-script = ExtResource("3_1yug6")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 position = Vector2(0, -1)

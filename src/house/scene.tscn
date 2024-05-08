@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c18urj6outl0x"]
+[gd_scene load_steps=23 format=3 uid="uid://c18urj6outl0x"]
 
 [ext_resource type="Script" path="res://src/house/scene.gd" id="1_2g3mh"]
 [ext_resource type="PackedScene" uid="uid://deswb2pjt7dbd" path="res://src/house/house.tscn" id="1_cc1p1"]
@@ -8,10 +8,14 @@
 [ext_resource type="Shader" path="res://shaders/invert.gdshader" id="5_dhb20"]
 [ext_resource type="PackedScene" uid="uid://ihttvdx7bwrs" path="res://src/house/light_switch.tscn" id="6_c8f1m"]
 [ext_resource type="PackedScene" uid="uid://be0jiwetpufp5" path="res://src/house/picture_frame.tscn" id="8_7qq1f"]
-[ext_resource type="PackedScene" uid="uid://dm7jpruhmqmyw" path="res://src/ui/inventory/inventory.tscn" id="8_sst7u"]
 [ext_resource type="PackedScene" uid="uid://75ch7lkl7t6e" path="res://src/ui/pause_menu/pause_menu.tscn" id="9_eb23i"]
 [ext_resource type="Script" path="res://src/house/picture_frame.gd" id="9_exr8s"]
 [ext_resource type="PackedScene" uid="uid://cjvadqvaojvlp" path="res://src/ui/dialogue/dialogue.tscn" id="10_0n80u"]
+[ext_resource type="PackedScene" uid="uid://b21kuj0vedbc2" path="res://src/ui/inventory2/diary/diary_model.tscn" id="10_g3pjd"]
+[ext_resource type="Script" path="res://src/house/diary_interactable.gd" id="11_xdsjp"]
+[ext_resource type="PackedScene" uid="uid://d12uhyrxvmpas" path="res://src/house/door.tscn" id="12_67arp"]
+[ext_resource type="PackedScene" uid="uid://dakho62b0xvhf" path="res://src/ui/inventory2/inventory.tscn" id="12_chnuq"]
+[ext_resource type="PackedScene" uid="uid://cls378sfv41xu" path="res://src/ui/objectives/objectives.tscn" id="15_puhgx"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_sc1yy"]
 ground_color = Color(0, 0, 0.0313726, 1)
@@ -30,6 +34,9 @@ shader = ExtResource("5_dhb20")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tcg24"]
 size = Vector3(2.0317, 1, 0.681193)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gkqcc"]
+size = Vector3(1.76306, 0.254315, 1.26056)
 
 [node name="House" type="Node3D"]
 process_mode = 1
@@ -101,8 +108,18 @@ script = ExtResource("9_exr8s")
 transform = Transform3D(1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, 1, -0.0270691, 0.404547, 0.172195)
 shape = SubResource("BoxShape3D_tcg24")
 
-[node name="Inventory" parent="." instance=ExtResource("8_sst7u")]
-visible = false
+[node name="crimson_ledger" parent="Props" instance=ExtResource("10_g3pjd")]
+transform = Transform3D(0.180196, 0, 0.11728, 0, 0.215, 0, -0.11728, 0, 0.180196, 24.3213, 2.26086, -10.5406)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Props/crimson_ledger"]
+collision_layer = 2
+script = ExtResource("11_xdsjp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/crimson_ledger/StaticBody3D"]
+shape = SubResource("BoxShape3D_gkqcc")
+
+[node name="door_with_frame" parent="Props" instance=ExtResource("12_67arp")]
+transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 12.5502, 0, -3.12401)
 
 [node name="CenterMessage" type="Label" parent="."]
 offset_left = -2.0
@@ -110,7 +127,6 @@ offset_top = 334.0
 offset_right = 1150.0
 offset_bottom = 647.0
 theme_override_font_sizes/font_size = 23
-text = "Hello There"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -119,6 +135,14 @@ visible = false
 
 [node name="Dialogue" parent="." instance=ExtResource("10_0n80u")]
 mouse_filter = 2
+
+[node name="Objectives" parent="." instance=ExtResource("15_puhgx")]
+process_mode = 2
+mouse_filter = 2
+
+[node name="Inventory" parent="." instance=ExtResource("12_chnuq")]
+process_mode = 2
+visible = false
 
 [connection signal="NotPointingAtInteractable" from="Player" to="." method="_on_player_not_pointing_at_interactable"]
 [connection signal="PointingAtInteractable" from="Player" to="." method="_on_player_pointing_at_interactable"]

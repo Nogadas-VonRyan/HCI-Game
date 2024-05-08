@@ -9,6 +9,8 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 func _input(_event):
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	if Input.is_action_just_pressed("Click"):
 		print(get_tree().paused)
 	

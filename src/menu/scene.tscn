@@ -250,6 +250,7 @@ layout_mode = 1
 copy_mode = 2
 
 [node name="Glitch" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_bxh24")
 layout_mode = 1
 anchors_preset = 15

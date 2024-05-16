@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://chqv51kxireew"]
+[gd_scene load_steps=58 format=3 uid="uid://chqv51kxireew"]
 
 [ext_resource type="Script" path="res://src/hospital/scene.gd" id="1_w6uh0"]
 [ext_resource type="PackedScene" uid="uid://b315dhm3wxa5d" path="res://src/player/player.tscn" id="2_bmw56"]
@@ -31,6 +31,7 @@
 [ext_resource type="Shader" path="res://shaders/vhs.gdshader" id="22_atwn3"]
 [ext_resource type="Script" path="res://src/hospital/interactables/crowbar/crowbar.gd" id="22_b72n0"]
 [ext_resource type="Shader" path="res://shaders/chromatic_aberration.gdshader" id="25_4tgof"]
+[ext_resource type="PackedScene" uid="uid://cls378sfv41xu" path="res://src/ui/objectives/objectives.tscn" id="28_sb1gg"]
 [ext_resource type="Script" path="res://src/menu/audio_stream.gd" id="29_tcmyi"]
 
 [sub_resource type="Environment" id="Environment_wr0y4"]
@@ -204,6 +205,43 @@ shader_parameter/alpha = 0.387
 shader_parameter/scale = 1.02
 shader_parameter/strength = 11.09
 
+[sub_resource type="Animation" id="Animation_lk606"]
+resource_name = "fade_in"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Darkness:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3takm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Darkness:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5di7"]
+_data = {
+"RESET": SubResource("Animation_3takm"),
+"fade_in": SubResource("Animation_lk606")
+}
+
 [node name="Hospital" type="Node3D"]
 process_mode = 1
 script = ExtResource("1_w6uh0")
@@ -254,7 +292,6 @@ omni_range = 230.439
 [node name="Player" parent="." instance=ExtResource("2_bmw56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0406, 11.3035, 32.3096)
 floor_max_angle = 1.50273
-JUMP_VELOCITY = 25.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_44jw2")
@@ -336,7 +373,7 @@ transform = Transform3D(0.146065, 0, -0.989275, 0, 1, 0, 0.989275, 0, 0.146065, 
 shaded = true
 modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
 outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
-text = "7
+text = "2
 -
 1"
 font = ExtResource("11_4mvd1")
@@ -349,22 +386,9 @@ transform = Transform3D(0.146065, 0, -0.989275, 0, 1, 0, 0.989275, 0, 0.146065, 
 shaded = true
 modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
 outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
-text = "1
--
-2"
-font = ExtResource("11_4mvd1")
-font_size = 161
-outline_size = 0
-line_spacing = -50.0
-
-[node name="Label3D3" type="Label3D" parent="WallWritings"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -36.3545, 12.239, 29.6531)
-shaded = true
-modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
-outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
 text = "3
 -
-5"
+2"
 font = ExtResource("11_4mvd1")
 font_size = 161
 outline_size = 0
@@ -375,7 +399,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -21.36
 shaded = true
 modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
 outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
-text = "9
+text = "1
 -
 3"
 font = ExtResource("11_4mvd1")
@@ -387,9 +411,22 @@ transform = Transform3D(0.146065, 0, -0.989275, 0, 1, 0, 0.989275, 0, 0.146065, 
 shaded = true
 modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
 outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
-text = "1
+text = "9
 -
 4"
+font = ExtResource("11_4mvd1")
+font_size = 161
+outline_size = 0
+line_spacing = -50.0
+
+[node name="Label3D3" type="Label3D" parent="WallWritings"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -36.3545, 12.239, 29.6531)
+shaded = true
+modulate = Color(0.290196, 0.00784314, 0.00784314, 1)
+outline_modulate = Color(0.65098, 0.0196078, 0.0196078, 1)
+text = "6
+-
+5"
 font = ExtResource("11_4mvd1")
 font_size = 161
 outline_size = 0
@@ -564,6 +601,24 @@ visible = false
 [node name="Inventory" parent="." instance=ExtResource("11_hjquf")]
 process_mode = 2
 visible = false
+
+[node name="Objectives" parent="." instance=ExtResource("28_sb1gg")]
+mouse_filter = 2
+
+[node name="Darkness" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Darkness"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_j5di7")
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_o7wwy")

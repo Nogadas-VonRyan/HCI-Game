@@ -15,6 +15,9 @@ func _ready():
 	PauseMenu.visible = false
 	Audio.stream.loop = true
 	Audio.play()
+	
+	$Darkness/AnimationPlayer.play("fade_in")
+	$Objectives.addObjective("find_pages","Find out the missing diary pages")
 
 func _input(_event):
 	if Input.is_action_pressed("Click"):
@@ -41,8 +44,8 @@ func _unhandled_input(_event):
 		Inventory.visible = true
 		get_tree().paused = true
 			
-	if Input.is_action_just_pressed("Quit"):
-		get_tree().quit()
+	#if Input.is_action_just_pressed("Quit"):
+	#	get_tree().quit()
 	if Input.is_action_just_pressed("1"):
 		$Player/Head/Camera3D.current = true
 		
@@ -107,7 +110,7 @@ func _on_password_lock_success():
 	$Enemies/Zombie2.visible = true
 	$Enemies/Zombie2.follow = true
 	$Enemies/Zombie2/CollisionShape3D.disabled = false
-	$Dialogue.setDialogue("[Shift] to Run",5)
+	$Dialogue.setDialogue("PRESS [Shift] to RUN!",1,5)
 
 func start_sanity_test():
 	$Flashbacks/SanityTest/Camera3D.current = true

@@ -71,6 +71,9 @@ func interact():
 		return
 	
 	var prioritized_collided: Interactable = Raycast.get_collider(0)
+	if not prioritized_collided:
+		return
+	
 	for i in range(Raycast.get_collision_count()):
 		var collided = Raycast.get_collider(i)
 		if collided.priority < prioritized_collided.priority:

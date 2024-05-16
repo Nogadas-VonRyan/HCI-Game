@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c18urj6outl0x"]
+[gd_scene load_steps=25 format=3 uid="uid://c18urj6outl0x"]
 
 [ext_resource type="Script" path="res://src/house/scene.gd" id="1_2g3mh"]
 [ext_resource type="PackedScene" uid="uid://deswb2pjt7dbd" path="res://src/house/house.tscn" id="1_cc1p1"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://src/house/diary_interactable.gd" id="11_xdsjp"]
 [ext_resource type="PackedScene" uid="uid://d12uhyrxvmpas" path="res://src/house/door.tscn" id="12_67arp"]
 [ext_resource type="PackedScene" uid="uid://dakho62b0xvhf" path="res://src/ui/inventory2/inventory.tscn" id="12_chnuq"]
+[ext_resource type="Script" path="res://src/house/door.gd" id="13_lnf5l"]
 [ext_resource type="PackedScene" uid="uid://cls378sfv41xu" path="res://src/ui/objectives/objectives.tscn" id="15_puhgx"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_sc1yy"]
@@ -37,6 +38,9 @@ size = Vector3(2.0317, 1, 0.681193)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gkqcc"]
 size = Vector3(1.76306, 0.254315, 1.26056)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_njfif"]
+size = Vector3(1.80008, 4.02687, 0.213492)
 
 [node name="House" type="Node3D"]
 process_mode = 1
@@ -119,7 +123,15 @@ script = ExtResource("11_xdsjp")
 shape = SubResource("BoxShape3D_gkqcc")
 
 [node name="door_with_frame" parent="Props" instance=ExtResource("12_67arp")]
-transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 12.5502, 0, -3.12401)
+transform = Transform3D(0.016, 0, 0, 0, 0.016, 0, 0, 0, 0.016, 15.2899, 0.0608232, -1.61786)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Props/door_with_frame"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -2.96606, 103.79, 7.53973)
+collision_layer = 2
+script = ExtResource("13_lnf5l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/door_with_frame/StaticBody3D"]
+shape = SubResource("BoxShape3D_njfif")
 
 [node name="CenterMessage" type="Label" parent="."]
 offset_left = -2.0

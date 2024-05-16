@@ -4,7 +4,8 @@ var ObjectivesList: Array[String]
 @onready var ObjectivesContainer = $Container/VBoxContainer
 
 func _ready():
-	addObjective("look_around","Look around and explore")
+	# addObjective("look_around","Look around and explore")
+	pass
 
 func addObjective(name: String, text: String):
 	if ObjectivesList.find(name) != -1:

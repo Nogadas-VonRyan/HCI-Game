@@ -22,6 +22,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="DialogueBox" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = -4.0
 offset_top = 560.0
 offset_right = 1155.0

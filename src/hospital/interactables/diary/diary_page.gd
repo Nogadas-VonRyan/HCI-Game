@@ -18,3 +18,4 @@ func interact():
 	visible = false
 	message = ""
 	$"../../Dialogue".setDialogue(dialogue_line,start_delay,end_delay)
+	Global.getRoot().increment_page_objective()

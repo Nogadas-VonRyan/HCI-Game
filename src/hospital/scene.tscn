@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://chqv51kxireew"]
+[gd_scene load_steps=60 format=3 uid="uid://chqv51kxireew"]
 
 [ext_resource type="Script" path="res://src/hospital/scene.gd" id="1_w6uh0"]
 [ext_resource type="PackedScene" uid="uid://b315dhm3wxa5d" path="res://src/player/player.tscn" id="2_bmw56"]
@@ -68,6 +68,9 @@ size = Vector3(1.89246, 1, 1.1979)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qsi67"]
 size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nc5ta"]
+size = Vector3(2.78762, 2.65094, 1)
 
 [sub_resource type="Gradient" id="Gradient_07k74"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -205,6 +208,21 @@ shader_parameter/alpha = 0.387
 shader_parameter/scale = 1.02
 shader_parameter/strength = 11.09
 
+[sub_resource type="Animation" id="Animation_3takm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Darkness:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_lk606"]
 resource_name = "fade_in"
 length = 5.0
@@ -221,8 +239,9 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_3takm"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_oi1o1"]
+resource_name = "fade_out"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -230,16 +249,17 @@ tracks/0/path = NodePath("Darkness:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j5di7"]
 _data = {
 "RESET": SubResource("Animation_3takm"),
-"fade_in": SubResource("Animation_lk606")
+"fade_in": SubResource("Animation_lk606"),
+"fade_out": SubResource("Animation_oi1o1")
 }
 
 [node name="Hospital" type="Node3D"]
@@ -525,6 +545,14 @@ end_delay = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10071, -1.15378, 2.01222)
 shape = SubResource("BoxShape3D_qsi67")
 
+[node name="Area3D3" type="Area3D" parent="Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3949, 12.0145, 7.23717)
+script = ExtResource("18_2lxrd")
+event = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D3"]
+shape = SubResource("BoxShape3D_nc5ta")
+
 [node name="Flashbacks" type="Node3D" parent="."]
 
 [node name="SanityTest" type="Node3D" parent="Flashbacks"]
@@ -592,6 +620,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Objectives" parent="." instance=ExtResource("28_sb1gg")]
+mouse_filter = 2
+
 [node name="Dialogue" parent="." instance=ExtResource("15_2yqxc")]
 mouse_filter = 2
 
@@ -601,9 +632,6 @@ visible = false
 [node name="Inventory" parent="." instance=ExtResource("11_hjquf")]
 process_mode = 2
 visible = false
-
-[node name="Objectives" parent="." instance=ExtResource("28_sb1gg")]
-mouse_filter = 2
 
 [node name="Darkness" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -644,4 +672,6 @@ script = ExtResource("29_tcmyi")
 [connection signal="passwordSuccess" from="PasswordLockModel/PasswordLock" to="." method="_on_password_lock_success"]
 [connection signal="body_entered" from="Areas/Area3D" to="Areas/Area3D" method="_on_body_entered"]
 [connection signal="body_entered" from="Areas/Area3D2" to="Areas/Area3D2" method="_on_body_entered"]
+[connection signal="body_entered" from="Areas/Area3D3" to="Areas/Area3D3" method="_on_body_entered"]
 [connection signal="animation_finished" from="Flashbacks/SanityTest/Camera3D/AnimationPlayer" to="Flashbacks/SanityTest" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Darkness/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

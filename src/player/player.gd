@@ -35,7 +35,7 @@ func _physics_process(delta):
 		return
 	
 	if Input.is_action_pressed("run"):
-		SPEED = 5.0
+		SPEED = 3.5
 	else:
 		SPEED = 2.0
 	

@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://brhxslfytfwdj"]
+[gd_scene load_steps=6 format=3 uid="uid://brhxslfytfwdj"]
 
 [ext_resource type="Script" path="res://src/menu/audio_slider.gd" id="1_50jqu"]
+[ext_resource type="Script" path="res://src/ui/settings/settings.gd" id="1_b8djg"]
 [ext_resource type="Script" path="res://src/ui/settings/mouse_sensitivity.gd" id="2_m3ann"]
+[ext_resource type="Script" path="res://src/ui/settings/restore_default.gd" id="3_6uv36"]
 
 [sub_resource type="Theme" id="Theme_bc0i0"]
 
@@ -14,6 +16,7 @@ offset_top = 166.0
 offset_bottom = -174.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_b8djg")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
@@ -76,3 +79,6 @@ script = ExtResource("2_m3ann")
 [node name="RestoreDefault" type="Button" parent="Grid"]
 layout_mode = 2
 text = "Restore Default Settings"
+script = ExtResource("3_6uv36")
+
+[connection signal="pressed" from="Grid/RestoreDefault" to="Grid/RestoreDefault" method="_on_pressed"]

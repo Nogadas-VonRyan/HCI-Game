@@ -13,7 +13,6 @@ func turnOff():
 	Light.visible = false
 	
 func interact():
-	print(Light)
 	if Light.visible:
 		turnOff()
 	else:

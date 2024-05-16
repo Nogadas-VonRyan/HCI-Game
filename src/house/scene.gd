@@ -61,7 +61,7 @@ func _on_player_pointing_at_interactable(collided: StaticBody3D):
 			"Diary":
 				hasDiary = true
 				Objectives.removeObjective("grandfather_clues")
-				Objectives.addObjective("grandfather_hospital","Go back to where your grandfatber worked")
+				Objectives.addObjective("grandfather_hospital","Go back to where your grandfather worked")
 				collided.interact()
 			"PictureFrame":
 				collided.interact()

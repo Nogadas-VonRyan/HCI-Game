@@ -158,6 +158,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_a1iv2")
+horizontal_scroll_mode = 0
 
 [node name="Label" type="Label" parent="DiaryPanel"]
 layout_mode = 2
@@ -174,6 +175,7 @@ There, you will find all the answers. I hope.
 - Grandfather Paul
 	04311"
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 position = Vector2(0, -1)

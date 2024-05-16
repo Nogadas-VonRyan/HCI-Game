@@ -6,10 +6,13 @@ extends Node3D
 @onready var Audio = $AudioStreamPlayer
 @onready var Inventory = $Inventory
 @onready var PauseMenu = $PauseMenu
+@onready var Objectives = $Objectives
 
 var isPasswordLock1Complete = false
 var hasCrowbar = false
 var stopTransition: bool = false
+
+var foundPages := 1
 
 func _ready():
 	PauseMenu.visible = false
@@ -17,11 +20,11 @@ func _ready():
 	Audio.play()
 	
 	$Darkness/AnimationPlayer.play("fade_in")
-	$Objectives.addObjective("find_pages","Find out the missing diary pages")
+	$Objectives.addObjective("find_pages","Find out the missing diary pages [1/5]")
+	
 
 func _input(_event):
 	if Input.is_action_pressed("Click"):
-		print(AudioHandler.master_volume)
 		if hasCrowbar:
 			$Player/Head/Camera3D/no_depth_crowbar/AnimationPlayer.play("swing")
 			$Player/Head/Camera3D/no_depth_crowbar/AnimationPlayer.queue("RESET")
@@ -112,6 +115,24 @@ func _on_password_lock_success():
 	$Enemies/Zombie2/CollisionShape3D.disabled = false
 	$Dialogue.setDialogue("PRESS [Shift] to RUN!",1,5)
 
+
 func start_sanity_test():
 	$Flashbacks/SanityTest/Camera3D.current = true
 	pass
+
+
+func increment_page_objective():
+	foundPages += 1
+	Objectives.removeObjective("find_pages")
+	Objectives.addObjective("find_pages","Find out the missing diary pages ["+str(foundPages)+"/5]")
+
+
+func fade_and_exit():
+	$Darkness/AnimationPlayer.play("fade_out")
+	
+func go_to_thankyou_page():
+	get_tree().change_scene_to_file.call_deferred("res://src/cutscenes/thank_you/scene.tscn")
+
+func _on_animation_player_animation_finished(anim_name):
+	if(anim_name == "fade_out"):
+		go_to_thankyou_page()

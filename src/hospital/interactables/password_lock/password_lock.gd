@@ -6,7 +6,6 @@ extends Interactable
 var isSolved = false
 
 func _ready():
-	print(collision_layer)
 	type = "PasswordLock"
 	message = "Press [E] to Examine"
 

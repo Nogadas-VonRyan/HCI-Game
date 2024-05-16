@@ -7,6 +7,5 @@ func _ready():
 
 
 func interact():
-	print($"..")
 	$"..".hide()
 	$CollisionShape3D.disabled = true

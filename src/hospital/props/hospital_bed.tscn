@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b861h7uafi2fk"]
+
+[ext_resource type="PackedScene" uid="uid://b2ieenbc3rm0e" path="res://assets/models/hospital_bed/hospital_bed.glb" id="1_6ohqy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tyh17"]
+size = Vector3(1.0166, 2.31859, 0.579731)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3awx3"]
+size = Vector3(1, 0.0871631, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0qc85"]
+size = Vector3(1, 0.081474, 0.445061)
+
+[node name="hospital_bed" instance=ExtResource("1_6ohqy")]
+
+[node name="bed_lp" parent="Sketchfab_model/Collada visual scene group" index="0"]
+transform = Transform3D(1.212, 0, 0, 0, 1.212, 0, 0, 0, 1.212, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Collada visual scene group/bed_lp" index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/Collada visual scene group/bed_lp/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.04765e-17, 0.272362)
+shape = SubResource("BoxShape3D_tyh17")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Sketchfab_model/Collada visual scene group/bed_lp/StaticBody3D" index="1"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 1.11409, 1.05661)
+shape = SubResource("BoxShape3D_3awx3")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Sketchfab_model/Collada visual scene group/bed_lp/StaticBody3D" index="2"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -1.12926, 0.796291)
+shape = SubResource("BoxShape3D_0qc85")

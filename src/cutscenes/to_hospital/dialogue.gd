@@ -14,6 +14,10 @@ const dialogue_timestamp = [94,87,84,76]
 func _ready():
 	timer.start(103)
 
+func _input(_event):
+	if Input.is_action_just_pressed("enter"):
+		get_tree().change_scene_to_file("res://src/hospital/scene.tscn")
+
 
 func _process(delta):
 	if round(timer.time_left) == 101:

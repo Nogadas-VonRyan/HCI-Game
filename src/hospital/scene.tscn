@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://chqv51kxireew"]
+[gd_scene load_steps=61 format=3 uid="uid://chqv51kxireew"]
 
 [ext_resource type="Script" path="res://src/hospital/scene.gd" id="1_w6uh0"]
 [ext_resource type="PackedScene" uid="uid://b315dhm3wxa5d" path="res://src/player/player.tscn" id="2_bmw56"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bhax17fh0pi8m" path="res://assets/images/question.png" id="14_h20b3"]
 [ext_resource type="PackedScene" uid="uid://cjvadqvaojvlp" path="res://src/ui/dialogue/dialogue.tscn" id="15_2yqxc"]
 [ext_resource type="Script" path="res://src/classes/event_area.gd" id="18_2lxrd"]
+[ext_resource type="PackedScene" uid="uid://b861h7uafi2fk" path="res://src/hospital/props/hospital_bed.tscn" id="19_ejhh6"]
 [ext_resource type="Script" path="res://src/hospital/flashbacks/sanity_test/sanity_test.gd" id="19_xx352"]
 [ext_resource type="Shader" path="res://shaders/noise_flow.gdshader" id="20_ewkwh"]
 [ext_resource type="Script" path="res://src/hospital/flashbacks/sanity_test/shadow_enemy.gd" id="21_t382i"]
@@ -522,6 +523,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5298, 11.428, 19.2523)
 
 [node name="UnresponsiveLightSwitch6" parent="LightSwirches" instance=ExtResource("8_gu3yx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8453, 11.8041, 22.937)
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="hospital_bed" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(0.578968, 0.00880853, 0.815303, -9.61879e-10, 0.999942, -0.0108034, -0.81535, 0.00625481, 0.578934, -40.7255, 10.2722, 17.0861)
+
+[node name="hospital_bed2" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(0.180382, 0.0106262, 0.983539, -9.61879e-10, 0.999942, -0.0108034, -0.983597, 0.00194873, 0.180371, -40.5551, 10.2722, 20.6057)
+
+[node name="hospital_bed3" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(0.83322, -0.00597363, -0.552909, -9.61879e-10, 0.999942, -0.0108034, 0.552941, 0.0090016, 0.833172, -32.5729, 10.2722, 15.6581)
+
+[node name="hospital_bed4" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(0.396683, -0.00991702, -0.917902, -1.2943e-09, 0.999942, -0.0108034, 0.917956, 0.00428552, 0.39666, -32.5729, 10.2722, 21.5701)
+
+[node name="hospital_bed5" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(0.83322, -0.00597363, -0.552909, -9.61879e-10, 0.999942, -0.0108034, 0.552941, 0.0090016, 0.833172, -20.7285, 10.2722, 26.5039)
+
+[node name="hospital_bed6" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(0.18817, 0.0106104, 0.982079, -9.61879e-10, 0.999942, -0.0108034, -0.982136, 0.00203287, 0.188159, -41.2852, 10.2722, 14.0419)
+
+[node name="hospital_bed7" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(0.755636, 0.00707612, 0.654953, 0, 0.999942, -0.0108034, -0.654991, 0.00816342, 0.755592, -45.2177, 10.2722, 28.1214)
+
+[node name="hospital_bed8" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(0.755636, 0.00707612, 0.654953, 0, 0.999942, -0.0108034, -0.654991, 0.00816342, 0.755592, -17.3544, 10.2722, 16.1004)
+
+[node name="hospital_bed9" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -34.4865, 11.3369, 27.198)
+
+[node name="hospital_bed10" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -35.7222, 11.3369, 27.1241)
+
+[node name="hospital_bed11" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -37.1159, 11.3369, 27.1509)
+
+[node name="hospital_bed12" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(0.547344, -0.836908, -3.65824e-08, 0, -4.37114e-08, 1, -0.836908, -0.547344, -2.39252e-08, -34.4865, 11.3188, 28.4694)
+
+[node name="hospital_bed13" parent="Props" instance=ExtResource("19_ejhh6")]
+transform = Transform3D(-0.0506802, 0.0107895, 0.998657, -1.28703e-09, 0.999942, -0.0108034, -0.998715, -0.000547513, -0.050677, -37.7099, 10.2722, 24.2255)
 
 [node name="Areas" type="Node3D" parent="."]
 

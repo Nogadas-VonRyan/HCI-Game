@@ -1,9 +1,12 @@
 extends Control
 
 @onready var Selector = $Selector
-@onready var ResumeButtom = $Background/HBoxContainer/VBoxContainer/ResumeButton
-@onready var SettingsButtom = $Background/HBoxContainer/VBoxContainer/SettingsButton
-@onready var MainMenuButtom = $Background/HBoxContainer/VBoxContainer/MainMenuButton
+@onready var ResumeButtom = $Background/Menu/VBoxContainer/ResumeButton
+@onready var SettingsButtom = $Background/Menu/VBoxContainer/SettingsButton
+@onready var MainMenuButtom = $Background/Menu/VBoxContainer/MainMenuButton
+
+@onready var YesConfirmButton = $Background/ConfirmMenu/Confirmation/Yes
+@onready var NoConfirmButton = $Background/ConfirmMenu/Confirmation/No
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -28,7 +31,7 @@ func _input(_event):
 		get_tree().paused = false
 
 
-func setSelectorPosition(node: Label):
+func setSelectorPosition(node: Label):	
 	Selector.visible = true
 	Selector.position.y = node.position.y + $Background.position.y
 	
@@ -58,5 +61,25 @@ func _on_settings_button_gui_input(_event):
 func _on_main_menu_button_gui_input(_event):
 	setSelectorPosition(MainMenuButtom)
 	if Input.is_action_just_pressed("Click"):
+		# get_tree().paused = false
+		# get_tree().change_scene_to_file.call_deferred("res://src/menu/scene.tscn")
+		$Background/Menu.hide()
+		$Background/ConfirmMenu.show()
+		unsetSelectorPosition()
+
+
+# Confirmation on Exit Menu
+
+func _on_yes_gui_input(_event):
+	setSelectorPosition(YesConfirmButton)
+	if Input.is_action_just_pressed("Click"):
 		get_tree().paused = false
 		get_tree().change_scene_to_file.call_deferred("res://src/menu/scene.tscn")
+
+
+func _on_no_gui_input(_event):
+	setSelectorPosition(NoConfirmButton)
+	if Input.is_action_just_pressed("Click"):
+		$Background/ConfirmMenu.hide()
+		$Background/Menu.show()
+		unsetSelectorPosition()

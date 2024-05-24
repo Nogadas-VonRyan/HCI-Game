@@ -21,13 +21,9 @@ func _ready():
 
 
 func _input(_event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
+	if Input.is_action_just_pressed("enter"):
+		get_tree().change_scene_to_file("res://src/house/scene.tscn")
 	
-	if Input.is_action_just_pressed("ui_accept"):
-		print(timer.time_left)
-	pass
-
 
 func _process(_delta):
 	if timer.time_left <= 99.5:

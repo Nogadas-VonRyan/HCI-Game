@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://pdy6b80w60n8"]
+
+[ext_resource type="Texture2D" uid="uid://d4d1i7a3rubue" path="res://assets/models/plank/plank_0.png" id="1_wx48c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qwd01"]
+size = Vector3(0.290643, 0.155066, 2.61787)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66mk2"]
+albedo_texture = ExtResource("1_wx48c")
+uv1_scale = Vector3(0.258, 0.841, 0.301)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vsyql"]
+material = SubResource("StandardMaterial3D_66mk2")
+size = Vector3(0.291, 0.155, 2.618)
+
+[node name="planks" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(0.993134, 0, -0.116983, 0, 1, 0, 0.116983, 0, 0.993134, 0, 0, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_qwd01")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D"]
+mesh = SubResource("BoxMesh_vsyql")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.526719, 0, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+shape = SubResource("BoxShape3D_qwd01")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2/CollisionShape3D"]
+mesh = SubResource("BoxMesh_vsyql")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="."]
+transform = Transform3D(0.996303, 0, 0.0859038, 0, 1, 0, -0.0859038, 0, 0.996303, -1.03807, 0, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
+shape = SubResource("BoxShape3D_qwd01")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D3/CollisionShape3D"]
+mesh = SubResource("BoxMesh_vsyql")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="."]
+transform = Transform3D(0.996832, 0, -0.0795378, 0, 1, 0, 0.0795378, 0, 0.996832, -1.551, 0, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4"]
+shape = SubResource("BoxShape3D_qwd01")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D4/CollisionShape3D"]
+mesh = SubResource("BoxMesh_vsyql")

@@ -1,10 +1,17 @@
-extends Node2D
+extends Control
 
 @onready var animation = $Background/AnimationPlayer
+@onready var timer = $Timer
 var displayed_count: int = 0
 
 func _ready():
-	animation.play("text_fade")
+	# animation.play("text_fade")
+	timer.start(51)
+
+func _input(event):
+	if event is InputEventKey:
+		get_tree().change_scene_to_file.call_deferred("res://src/menu/scene.tscn")
+
 
 
 func _on_animation_player_animation_finished(anim_name):
@@ -15,3 +22,7 @@ func _on_animation_player_animation_finished(anim_name):
 #	animation.play("text_fade")
 #	displayed_count += 1
 	pass
+
+
+func _on_timer_timeout():
+	get_tree().change_scene_to_file.call_deferred("res://src/menu/scene.tscn")

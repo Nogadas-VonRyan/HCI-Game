@@ -17,7 +17,7 @@ func _ready():
 	PauseMenu.visible = false
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 	Dialogue.setDialogue("Press WASD to move",2,2)
-	$Objectives.addObjective("look_around","Look around explore the house")
+	$Objectives.addObjective("look_around","Look around and explore the house")
 
 
 func _process(_delta):

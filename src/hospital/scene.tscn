@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dcyk6v1ang01t" path="res://src/hospital/hospital1_model.tscn" id="2_fv7hl"]
 [ext_resource type="Script" path="res://src/menu/light_flicker.gd" id="2_ljin6"]
 [ext_resource type="PackedScene" uid="uid://3nvx4ows87tu" path="res://src/enemy/zombie/zombie.tscn" id="3_whsvx"]
-[ext_resource type="PackedScene" uid="uid://cihvj0lqp8sqn" path="res://src/hospital/boarded_door1/plank.tscn" id="5_aco7u"]
 [ext_resource type="PackedScene" uid="uid://cewufb3f4fjxd" path="res://src/hospital/interactables/diary/diary_page.tscn" id="5_gkxit"]
+[ext_resource type="PackedScene" uid="uid://pdy6b80w60n8" path="res://src/hospital/boarded_door1/plank2.tscn" id="6_e4xho"]
 [ext_resource type="Script" path="res://src/hospital/boarded_door1/boarded_door.gd" id="7_4nq3q"]
 [ext_resource type="PackedScene" uid="uid://75ch7lkl7t6e" path="res://src/ui/pause_menu/pause_menu.tscn" id="7_dhnhr"]
 [ext_resource type="PackedScene" uid="uid://bqva10kt6bf44" path="res://src/hospital/interactables/light_switch/light_switch.tscn" id="7_lg8hd"]
@@ -327,8 +327,8 @@ end_position = Vector3(0.0138314, -1.05376, -0.529721)
 [node name="BoardedDoor1" type="Node3D" parent="."]
 script = ExtResource("7_4nq3q")
 
-[node name="plank" parent="BoardedDoor1" instance=ExtResource("5_aco7u")]
-transform = Transform3D(0.009, 0, 0, 0, 0.00089294, -0.00895559, 0, 0.00895559, 0.00089294, -36.1118, 10.884, 22.8897)
+[node name="planks" parent="BoardedDoor1" instance=ExtResource("6_e4xho")]
+transform = Transform3D(-8.74228e-08, 4.37114e-08, 1, -1, 4.37114e-08, -8.74228e-08, -4.37114e-08, -1, 4.37114e-08, -34.9894, 10.8237, 22.8547)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BoardedDoor1"]
 collision_layer = 3
@@ -337,6 +337,8 @@ script = ExtResource("8_yk2gm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BoardedDoor1/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.2128, 11.6281, 22.8984)
 shape = SubResource("BoxShape3D_n5rit")
+
+[node name="Timer" type="Timer" parent="BoardedDoor1"]
 
 [node name="PasswordLockModel" parent="." instance=ExtResource("8_p7bnl")]
 transform = Transform3D(0.0100854, 0, -0.117568, 0, 0.118, 0, 0.117568, 0, 0.0100854, -13.3991, 11.2777, 19.1586)
@@ -589,11 +591,13 @@ shape = SubResource("BoxShape3D_qsi67")
 
 [node name="Area3D3" type="Area3D" parent="Areas"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3949, 12.0145, 7.23717)
+visible = false
 script = ExtResource("18_2lxrd")
 event = 10
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D3"]
 shape = SubResource("BoxShape3D_nc5ta")
+disabled = true
 
 [node name="Flashbacks" type="Node3D" parent="."]
 
@@ -711,6 +715,7 @@ script = ExtResource("29_tcmyi")
 
 [connection signal="NotPointingAtInteractable" from="Player" to="." method="_on_player_not_pointing_at_interactable"]
 [connection signal="PointingAtInteractable" from="Player" to="." method="_on_player_pointing_at_interactable"]
+[connection signal="timeout" from="BoardedDoor1/Timer" to="BoardedDoor1" method="_on_timer_timeout"]
 [connection signal="passwordSuccess" from="PasswordLockModel/PasswordLock" to="." method="_on_password_lock_success"]
 [connection signal="body_entered" from="Areas/Area3D" to="Areas/Area3D" method="_on_body_entered"]
 [connection signal="body_entered" from="Areas/Area3D2" to="Areas/Area3D2" method="_on_body_entered"]

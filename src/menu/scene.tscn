@@ -9,9 +9,9 @@
 [ext_resource type="Shader" path="res://shaders/crt.gdshader" id="4_l5b8k"]
 [ext_resource type="Script" path="res://src/menu/moveSelector.gd" id="4_tkrqs"]
 [ext_resource type="Script" path="res://src/menu/light_flicker.gd" id="5_2otj6"]
-[ext_resource type="FontFile" uid="uid://dpwthrlix1hrk" path="res://assets/fonts/Base 02.ttf" id="5_usewi"]
 [ext_resource type="Shader" path="res://shaders/gaussian_blur.gdshader" id="7_cv0e7"]
 [ext_resource type="AudioStream" uid="uid://bpdc3eaqa32oi" path="res://assets/audio/horror-intro-music.mp3" id="8_8hydd"]
+[ext_resource type="FontFile" uid="uid://co5bg33xqdhr3" path="res://assets/fonts/FeENrm2.ttf" id="9_lj0jc"]
 [ext_resource type="Script" path="res://src/menu/black_fade.gd" id="9_vpo60"]
 [ext_resource type="PackedScene" uid="uid://brhxslfytfwdj" path="res://src/ui/settings/settings.tscn" id="13_miq75"]
 [ext_resource type="Script" path="res://src/menu/audio_stream.gd" id="15_y5s54"]
@@ -222,12 +222,12 @@ script = ExtResource("4_tkrqs")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_left = 604.0
-offset_top = 562.0
-offset_right = 1126.0
-offset_bottom = 624.0
-theme_override_fonts/font = ExtResource("5_usewi")
-theme_override_font_sizes/font_size = 40
+offset_left = 721.0
+offset_top = 577.0
+offset_right = 1243.0
+offset_bottom = 639.0
+theme_override_fonts/font = ExtResource("9_lj0jc")
+theme_override_font_sizes/font_size = 38
 text = "Echoes from the Past"
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]

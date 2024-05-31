@@ -79,7 +79,7 @@ func _on_player_pointing_at_interactable(collided):
 				collided.interact()
 			"Boards":
 				if hasCrowbar:
-					$BoardedDoor1.disable()
+					$BoardedDoor1.fall_down()
 				else:
 					collided.interact()
 			"Crowbar":
@@ -93,7 +93,7 @@ func _on_player_pointing_at_interactable(collided):
 		match collided.type:
 			"Boards":
 				if hasCrowbar:
-					$BoardedDoor1.disable()
+					$BoardedDoor1.fall_down()
 				else:
 					collided.interact()
 

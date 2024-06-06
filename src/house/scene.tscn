@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c18urj6outl0x"]
+[gd_scene load_steps=29 format=3 uid="uid://c18urj6outl0x"]
 
 [ext_resource type="Script" path="res://src/house/scene.gd" id="1_2g3mh"]
 [ext_resource type="PackedScene" uid="uid://deswb2pjt7dbd" path="res://src/house/house.tscn" id="1_cc1p1"]
@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dakho62b0xvhf" path="res://src/ui/inventory2/inventory.tscn" id="12_chnuq"]
 [ext_resource type="Script" path="res://src/house/door.gd" id="13_lnf5l"]
 [ext_resource type="PackedScene" uid="uid://cls378sfv41xu" path="res://src/ui/objectives/objectives.tscn" id="15_puhgx"]
-[ext_resource type="Texture2D" uid="uid://co78m2m4kwm5g" path="res://assets/images/button_icons/wasd.png" id="18_ci0sn"]
+[ext_resource type="Texture2D" uid="uid://diep21kr1e7ab" path="res://assets/images/button_icons/wasd2.png" id="18_tsldn"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_sc1yy"]
 ground_color = Color(0, 0, 0.0313726, 1)
@@ -42,6 +42,43 @@ size = Vector3(1.76306, 0.254315, 1.26056)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_njfif"]
 size = Vector3(1.80008, 4.02687, 0.213492)
+
+[sub_resource type="Animation" id="Animation_vt0cj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x5geu"]
+resource_name = "fade_in_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.1, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_05g4y"]
+_data = {
+"RESET": SubResource("Animation_vt0cj"),
+"fade_in_out": SubResource("Animation_x5geu")
+}
 
 [node name="House" type="Node3D"]
 process_mode = 1
@@ -114,7 +151,7 @@ transform = Transform3D(1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, 1, -0.02706
 shape = SubResource("BoxShape3D_tcg24")
 
 [node name="crimson_ledger" parent="Props" instance=ExtResource("10_g3pjd")]
-transform = Transform3D(0.180196, 0, 0.11728, 0, 0.215, 0, -0.11728, 0, 0.180196, 24.3213, 2.26086, -10.5406)
+transform = Transform3D(0.211031, 0, 0.0411233, 0, 0.215, 0, -0.0411233, 0, 0.211031, 24.3213, 1.31206, -12.7116)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Props/crimson_ledger"]
 collision_layer = 2
@@ -157,19 +194,25 @@ mouse_filter = 2
 process_mode = 2
 visible = false
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="buttonTip" type="Sprite2D" parent="."]
 position = Vector2(531, 583)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("18_ci0sn")
+texture = ExtResource("18_tsldn")
 
-[node name="Label" type="Label" parent="Sprite2D"]
+[node name="Label" type="Label" parent="buttonTip"]
 offset_left = -536.0
 offset_top = -24.0
 offset_right = 1212.0
 offset_bottom = 135.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 101
 text = "Press                     to move around"
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="buttonTip"]
+libraries = {
+"": SubResource("AnimationLibrary_05g4y")
+}
 
 [connection signal="NotPointingAtInteractable" from="Player" to="." method="_on_player_not_pointing_at_interactable"]
 [connection signal="PointingAtInteractable" from="Player" to="." method="_on_player_pointing_at_interactable"]

@@ -8,6 +8,7 @@ extends Node3D
 @onready var PauseMenu = $PauseMenu
 @onready var Inventory = $Inventory
 @onready var Objectives = $Objectives
+@onready var buttonTipLabel = $buttonTip/AnimationPlayer
 
 var stopTransition = false
 var hasDiary = false
@@ -16,8 +17,8 @@ var hasDiary = false
 func _ready():
 	PauseMenu.visible = false
 	process_mode = Node.PROCESS_MODE_PAUSABLE
-	Dialogue.setDialogue("Press WASD to move",2,2)
 	$Objectives.addObjective("look_around","Look around and explore the house")
+	buttonTipLabel.play("fade_in_out")
 
 
 func _process(_delta):

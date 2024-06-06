@@ -4,6 +4,7 @@ extends CharacterBody3D
 signal PointingAtInteractable(collided: Object)
 signal NotPointingAtInteractable
 
+@onready var flashlight = $Head/Camera3D/Flashlight
 @onready var Raycast: ShapeCast3D = $Head/Camera3D/ShapeCast3D 
 @export var SPEED = 2.0
 @export var JUMP_VELOCITY = 20.5
@@ -22,6 +23,9 @@ func _ready():
 
 
 func _input(event):	
+	if Input.is_action_just_pressed("flashlight"):
+		flashlight.visible = !flashlight.visible
+	
 	if event is InputEventMouseMotion:
 		rotation.y -= event.relative.x / InputHandler.mouse_sensitivity
 		$Head/Camera3D.rotation.x -= event.relative.y / InputHandler.mouse_sensitivity

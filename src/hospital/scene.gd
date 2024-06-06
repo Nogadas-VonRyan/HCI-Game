@@ -86,6 +86,8 @@ func _on_player_pointing_at_interactable(collided):
 				hasCrowbar = true
 				$Player/Head/Camera3D/no_depth_crowbar.show()
 				collided.interact()
+			"Closet":
+				collided.interact()
 			_:
 				pass
 	
@@ -110,9 +112,9 @@ func _on_password_lock_success():
 	$Player/Head/Camera3D.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	Player.disable_player = false
-	$Enemies/Zombie2.visible = true
-	$Enemies/Zombie2.follow = true
-	$Enemies/Zombie2/CollisionShape3D.disabled = false
+	$Enemies/skinny_zombie.visible = true
+	$Enemies/skinny_zombie.follow = true
+	$Enemies/skinny_zombie/CollisionShape3D.disabled = false
 	$Dialogue.setDialogue("PRESS [Shift] to RUN!",1,5)
 
 

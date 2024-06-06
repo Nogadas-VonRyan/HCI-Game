@@ -9,6 +9,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_ir5s5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dghuq"]
+radius = 0.25943
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_migpa"]
 

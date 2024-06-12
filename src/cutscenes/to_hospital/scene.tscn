@@ -41,5 +41,6 @@ vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_sx20x")
+volume_db = -20.0
 
 [node name="Timer" type="Timer" parent="."]

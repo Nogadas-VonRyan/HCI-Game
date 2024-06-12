@@ -20,7 +20,7 @@ func _ready():
 	Audio.play()
 	
 	$Darkness/AnimationPlayer.play("fade_in")
-	$Objectives.addObjective("find_pages","Find out the missing diary pages [1/5]")
+	$Objectives.addObjective("find_pages","Find out the missing diary pages [1/10]")
 	
 
 func _input(_event):

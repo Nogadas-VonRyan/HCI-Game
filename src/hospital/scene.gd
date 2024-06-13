@@ -126,7 +126,7 @@ func start_sanity_test():
 func increment_page_objective():
 	foundPages += 1
 	Objectives.removeObjective("find_pages")
-	Objectives.addObjective("find_pages","Find out the missing diary pages ["+str(foundPages)+"/5]")
+	Objectives.addObjective("find_pages","Find out the missing diary pages ["+str(foundPages)+"/10w]")
 
 
 func fade_and_exit():

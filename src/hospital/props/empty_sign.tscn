@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp0b2xhfda0qs"]
+
+[ext_resource type="PackedScene" uid="uid://comwok818y3bi" path="res://assets/models/empty_sign/empty_sign.gltf" id="1_wikha"]
+[ext_resource type="Script" path="res://src/hospital/props/empty_sign.gd" id="2_8m60q"]
+
+[node name="empty_sign" instance=ExtResource("1_wikha")]
+script = ExtResource("2_8m60q")
+
+[node name="Label3D" type="Label3D" parent="." index="1"]
+transform = Transform3D(-1.52946e-07, -3.499, 0, -1.52946e-07, 6.68549e-15, 3.499, -3.499, 1.52946e-07, -1.52946e-07, 0, 0.0139372, 0)
+shaded = true
+modulate = Color(0.909804, 0.745098, 0.435294, 1)
+text = "2"
+outline_size = 0

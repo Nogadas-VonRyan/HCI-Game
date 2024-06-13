@@ -10,7 +10,7 @@ extends Node3D
 	$ClockFace5_2
 ]
 @onready var slot: Node = allSlots[0]
-@export var password: Array[int] = [1,2,3,4,5]
+@export var password: Array[int] = [2,5,9,3,4]
 @export var rotationSpeed: float = 0.08
 
 const rotationDistance: float = PI / 10 * 2

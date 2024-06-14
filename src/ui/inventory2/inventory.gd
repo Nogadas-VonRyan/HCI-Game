@@ -33,6 +33,7 @@ func closeInventory():
 		$InventoryPanel.show()
 		$DiaryModel.show()
 	else: 
+		$Selector.visible = false
 		hide()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		$"..".stopTransition = true
@@ -111,4 +112,12 @@ func _on_sub_viewport_container_gui_input(_event):
 
 
 func _on_main_inventory_gui_input(_event):
+	$Selector.visible = false
+
+
+func _on_scroll_container_scroll_started():
+	$Selector.visible = false
+
+
+func _on_scroll_container_gui_input(event):
 	$Selector.visible = false

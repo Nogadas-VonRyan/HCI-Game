@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjfkxog1fkk3f"]
+[gd_scene load_steps=3 format=3 uid="uid://cjfkxog1fkk3f"]
 
 [ext_resource type="PackedScene" uid="uid://duo6dikaretri" path="res://assets/models/operating_table/operating_table.glb" id="1_2gcc0"]
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gfpxn"]
+points = PackedVector3Array(5.09596, 3.14333, -4.25702, 1.47738, 0.513233, 2.48262, 0.0484983, 3.5629, 3.90354, -1.97356, 0.513233, 0.181478, 1.47738, 0.0197892, -3.43504, -2.79631, 3.30769, 2.48262, 2.13558, 3.14333, -6.39541, 3.28589, 0.0197892, -2.11863, -0.823244, 0.0197892, 0.673843, 2.05017, 3.6373, -5.93949, 0.32784, 3.30769, 4.12761, 5.09596, 3.14333, -4.91523, -1.64523, 2.32117, -0.476726, 4.74994, 3.63535, -4.13259, -2.62826, 3.5629, 2.3286, 3.94487, 2.97897, -1.79107, 0.986044, 0.0197892, -3.27126, 0.163289, 2.97897, -3.43504, -1.31612, 3.30769, 3.46838, 1.80725, 0.513233, 1.98922, -2.79631, 3.30769, 2.15403, 2.46468, 3.14333, -6.39541, 0.850397, 0.182167, 1.41969, 1.6427, 1.17103, 2.31884, 4.1409, 3.56329, -5.22755, 1.9718, 3.14333, -6.22957, -2.46721, 3.30769, 2.81223, -0.98625, 0.0197892, 0.181478, -0.000489473, 3.30769, 4.12761, 4.2732, 3.14333, -5.40862, 3.12289, 3.30769, -6.06579, 4.75402, 3.6373, -4.58757)
+
 [node name="operating_table" instance=ExtResource("1_2gcc0")]
 transform = Transform3D(0.482, 0, 0, 0, 0.482, 0, 0, 0, 0.482, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/87e36745af34455abffcd7a7c786c1adfbx/RootNode/LAMP_LPLAMP_03_lowLAMP_03polySurface14/LAMP_LPLAMP_03_lowLAMP_03polySurface14_Table_0" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/87e36745af34455abffcd7a7c786c1adfbx/RootNode/LAMP_LPLAMP_03_lowLAMP_03polySurface14/LAMP_LPLAMP_03_lowLAMP_03polySurface14_Table_0/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_gfpxn")

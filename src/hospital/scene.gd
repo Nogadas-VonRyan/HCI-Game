@@ -9,6 +9,7 @@ extends Node3D
 @onready var Objectives = $Objectives
 
 var isPasswordLock1Complete = false
+var hasUndergroundKey = false
 var hasCrowbar = false
 var stopTransition: bool = false
 
@@ -58,6 +59,18 @@ func _on_player_pointing_at_interactable(collided):
 	if (Input.is_action_just_pressed("interact")) and collided is Interactable:
 		match collided.type:
 			"Door":
+				if collided.name == "exit_door":
+					if foundPages >= 10:
+						get_tree().change_scene_to_file("res://src/cutscenes/ending/ending.tscn")
+					else:
+						$Dialogue.setDialogue("I should find all the missing pages first",0,4)
+				elif collided.name == "underground_door":
+					if hasUndergroundKey:
+						$"Props/padlock".hide()
+						collided.hasLock = false
+					else:
+						$Dialogue.setDialogue("I think I need a key first",0,4)
+				
 				if isPasswordLock1Complete and collided.hasLock:
 					collided.hasLock = false
 				if not collided.Door.is_playing() and collided.isOpen:
@@ -66,6 +79,7 @@ func _on_player_pointing_at_interactable(collided):
 					$DoorOpen.play()
 				elif not collided.Door.is_playing():
 					$DoorLocked.play()
+					
 				collided.interact()
 			"DiaryPage":
 				if collided.visible:
@@ -87,6 +101,9 @@ func _on_player_pointing_at_interactable(collided):
 				$Player/Head/Camera3D/no_depth_crowbar.show()
 				collided.interact()
 			"Closet":
+				collided.interact()
+			"Key":
+				hasUndergroundKey = true
 				collided.interact()
 			_:
 				pass
@@ -126,7 +143,7 @@ func start_sanity_test():
 func increment_page_objective():
 	foundPages += 1
 	Objectives.removeObjective("find_pages")
-	Objectives.addObjective("find_pages","Find out the missing diary pages ["+str(foundPages)+"/10w]")
+	Objectives.addObjective("find_pages","Find out the missing diary pages ["+str(foundPages)+"/10]")
 
 
 func fade_and_exit():

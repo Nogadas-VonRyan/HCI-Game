@@ -6,10 +6,18 @@ extends CharacterBody3D
 @onready var animationNode = $AnimationPlayer
 @onready var camera = $Camera3D
 @onready var scream = $scream
+@export var disabled_collision = false
+
+@onready var spawn_position = Vector3(-52.459,11.123,31.654)
+
+@onready var player_position = Global.getRoot().get_node('Player')
+@onready var target = player_position
+var following_target: bool = false
 
 var animation_node: String
 
 func _ready():
+	$CollisionShape3D.disabled = disabled_collision
 	match animation:
 		"Sleep":
 			animation_node = "Armature|mixamocom|Layer0"
@@ -25,9 +33,14 @@ func _physics_process(delta):
 		animationNode.play("Armature001|mixamocom|Layer0")
 		
 	var dir = Vector3()
-	nav.target_position = $"../../Player".global_position
+	
+	if following_target:
+		nav.target_position = target
+	else:
+		nav.target_position = target.global_position
 	
 	var next_pos = nav.get_next_path_position()
+	
 	if position != next_pos:
 		look_at(next_pos)
 	dir = next_pos - global_position
@@ -54,3 +67,10 @@ func _on_animation_player_animation_finished(anim_name):
 		Player.global_position.z = 32.31
 		camera.current = false
 	pass
+	
+func follow_target(input_position):
+	following_target = true
+	target = input_position
+
+func follow_player():
+	following_target = false

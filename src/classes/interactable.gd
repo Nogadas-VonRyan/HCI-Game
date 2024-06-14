@@ -9,3 +9,4 @@ func setInactive():
 	type = ""
 	message = ""
 	collision_layer = 0
+

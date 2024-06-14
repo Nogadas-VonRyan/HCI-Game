@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ol07gusewix0"]
+
+[ext_resource type="PackedScene" uid="uid://ca4578y1xkmxb" path="res://assets/models/padlock/simple_metal_key.glb" id="1_ep02o"]
+[ext_resource type="Texture2D" uid="uid://bhax17fh0pi8m" path="res://assets/images/question.png" id="2_rjkvl"]
+[ext_resource type="Script" path="res://src/hospital/interactables/key/key.gd" id="3_iewpj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pxfqb"]
+size = Vector3(0.426899, 0.317654, 0.440032)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="simple_metal_key" parent="." instance=ExtResource("1_ep02o")]
+transform = Transform3D(0.127957, 0.0757896, 0.0195689, -0.0172176, -0.00932973, 0.148716, 0.0763581, -0.129108, 0.000740727, -0.0823936, 0.0595066, 0.0125961)
+
+[node name="Sprite3D" type="Sprite3D" parent="simple_metal_key"]
+transform = Transform3D(0.137, 1.92512e-10, 4.09782e-08, 0, 0.137, -2.23517e-08, -3.53903e-08, 2.26705e-08, 0.137, 0.171051, -0.0446472, 2.47743)
+billboard = 1
+texture = ExtResource("2_rjkvl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 3
+script = ExtResource("3_iewpj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0854921, 0)
+shape = SubResource("BoxShape3D_pxfqb")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0uiiurblnf8"]
+
+[ext_resource type="PackedScene" uid="uid://dd8dp8s2nr084" path="res://assets/models/desk/metal_desk.glb" id="1_35g1h"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6lyrn"]
+points = PackedVector3Array(0.899565, -0.338656, 0.4846, -1.01587, 0.402804, -0.534873, -0.9089, -0.448397, -0.435097, -1.01587, 0.402804, 0.544492, 1.01587, 0.402804, -0.534873, 0.958129, 0.470093, 0.513815, 0.9103, -0.449005, -0.435686, -0.9089, -0.448397, 0.444716, -0.958143, 0.4701, -0.504204, 0.9103, -0.449005, 0.445305, 0.958143, 0.4701, -0.504204, -0.958129, 0.470093, 0.513815, 1.01587, 0.402804, 0.544492, -0.893753, -0.336429, 0.4815)
+
+[node name="metal_desk" instance=ExtResource("1_35g1h")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/Collada visual scene group/HANDEAL/defaultMaterial" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/Collada visual scene group/HANDEAL/defaultMaterial/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_6lyrn")

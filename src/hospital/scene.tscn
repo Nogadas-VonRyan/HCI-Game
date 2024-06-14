@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://chqv51kxireew"]
+[gd_scene load_steps=73 format=3 uid="uid://chqv51kxireew"]
 
 [ext_resource type="Script" path="res://src/hospital/scene.gd" id="1_w6uh0"]
 [ext_resource type="PackedScene" uid="uid://b315dhm3wxa5d" path="res://src/player/player.tscn" id="2_bmw56"]
@@ -37,9 +37,10 @@
 [ext_resource type="Texture2D" uid="uid://b5oug0dnst7b0" path="res://assets/images/xray/chest_xray.jpg" id="23_mw103"]
 [ext_resource type="Texture2D" uid="uid://b6x0oapv6a8ef" path="res://assets/images/xray/head_xray.jpg" id="24_dfqcc"]
 [ext_resource type="Shader" path="res://shaders/chromatic_aberration.gdshader" id="25_4tgof"]
-[ext_resource type="PackedScene" uid="uid://dd8dp8s2nr084" path="res://assets/models/desk/metal_desk.glb" id="25_5h0lb"]
 [ext_resource type="PackedScene" uid="uid://cv3hyo3njxqhc" path="res://src/hospital/closet/closet.tscn" id="25_ue3df"]
-[ext_resource type="PackedScene" uid="uid://gmkckt2honkj" path="res://assets/models/pill_bottle/old_pills.glb" id="26_qf455"]
+[ext_resource type="PackedScene" uid="uid://d0uiiurblnf8" path="res://src/hospital/props/metal_desk.tscn" id="27_aqsj7"]
+[ext_resource type="PackedScene" uid="uid://ol07gusewix0" path="res://src/hospital/interactables/key/key.tscn" id="28_7j3eu"]
+[ext_resource type="PackedScene" uid="uid://doki6ejgqsc67" path="res://assets/models/padlock/padlock.glb" id="28_hnc6y"]
 [ext_resource type="PackedScene" uid="uid://cls378sfv41xu" path="res://src/ui/objectives/objectives.tscn" id="28_sb1gg"]
 [ext_resource type="Script" path="res://src/menu/audio_stream.gd" id="29_tcmyi"]
 [ext_resource type="PackedScene" uid="uid://dp0b2xhfda0qs" path="res://src/hospital/props/empty_sign.tscn" id="39_dkqty"]
@@ -81,7 +82,9 @@ size = Vector3(1.89246, 1, 1.1979)
 size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nc5ta"]
-size = Vector3(2.78762, 2.65094, 1)
+size = Vector3(4.866, 3.471, 7.666)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6pso"]
 
 [sub_resource type="Gradient" id="Gradient_07k74"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -345,15 +348,15 @@ light_energy = 0.1
 omni_attenuation = 0.870551
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2414, 1.84738, -36.8524)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.116, 1.847, -36.852)
 light_color = Color(0.160784, 0.384314, 1, 1)
 light_energy = 0.1
 light_specular = 14.246
 shadow_enabled = true
-omni_range = 4.0
+omni_range = 3.0
 
 [node name="Player" parent="." instance=ExtResource("2_bmw56")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.0406, 11.3035, 32.3096)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6297, 1.7252, -34.7865)
 floor_max_angle = 1.50273
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
@@ -412,7 +415,7 @@ start_delay = 1
 end_delay = 2
 
 [node name="DiaryPage2" parent="Diaries" instance=ExtResource("5_gkxit")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.6059, 10.2868, 22.0007)
+transform = Transform3D(0.703122, 0, 0.71107, 0, 1, 0, -0.71107, 0, 0.703122, -23.3274, 10.4051, 19.7594)
 page_number = 2
 page_content = "June 2, 1945
 
@@ -422,7 +425,7 @@ We are excited to see the results of the future trials in our patients. We are h
 "
 
 [node name="DiaryPage3" parent="Diaries" instance=ExtResource("5_gkxit")]
-transform = Transform3D(0.838404, 0.00485151, -0.545027, 0, 0.99996, 0.00890106, 0.545049, -0.00746269, 0.838371, -28.0033, 10.2838, 20.5684)
+transform = Transform3D(0.838404, 0.00485151, -0.545027, 0, 0.99996, 0.00890106, 0.545049, -0.00746269, 0.838371, -36.9999, 10.3009, 28.0496)
 page_number = 99
 page_content = "June 10, 1945
 
@@ -575,6 +578,12 @@ transform = Transform3D(1.345, 0, 0, 0, 1.345, 0, 0, 0, 1.345, -17.2624, 9.9306,
 visible = false
 animation = "Walk"
 follow = false
+disabled_collision = true
+
+[node name="skinny_zombie2" parent="Enemies" instance=ExtResource("17_iiso6")]
+transform = Transform3D(-0.41297, 0, -1.28003, 0, 1.345, 0, 1.28003, 0, -0.41297, 2.35415, 6.62306, 32.9936)
+animation = "Walk"
+follow = false
 
 [node name="LightSwirches" type="Node3D" parent="."]
 
@@ -665,11 +674,20 @@ texture = ExtResource("23_mw103")
 transform = Transform3D(-1.67415e-08, 0, 0.383, 0, 0.383, 0, -0.383, 0, -1.67415e-08, 32.1827, 2.19293, -36.3729)
 texture = ExtResource("24_dfqcc")
 
-[node name="metal_desk" parent="Props" instance=ExtResource("25_5h0lb")]
-transform = Transform3D(0.961961, 0, 0.273187, 0, 1, 0, -0.273187, 0, 0.961961, 35.8211, 1.06942, -38.4248)
+[node name="table_with_metal_legs3" parent="Props" instance=ExtResource("22_kbu3j")]
+transform = Transform3D(-4.37114e-11, 0, 0.001, 0, 0.001, 0, -0.001, 0, -4.37114e-11, 34.5264, 1.13429, -31.9355)
 
-[node name="old_pills" parent="Props" instance=ExtResource("26_qf455")]
-transform = Transform3D(0.961961, 0, 0.273187, 0, 1, 0, -0.273187, 0, 0.961961, 35.4617, 1.61648, -38.0451)
+[node name="padlock" parent="Props" instance=ExtResource("28_hnc6y")]
+transform = Transform3D(0.00337408, 0.536989, -2.34726e-08, 0, -2.3473e-08, -0.537, -0.536989, 0.00337408, -1.47486e-10, 39.9926, 1.44335, -37.196)
+
+[node name="underground_key" parent="Props" instance=ExtResource("28_7j3eu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6611, 0.424723, -44.4321)
+
+[node name="metal_desk3" parent="Props" instance=ExtResource("27_aqsj7")]
+transform = Transform3D(0.966138, 0, 0.258027, 0, 1, 0, -0.258027, 0, 0.966138, 34.0557, 0.841852, -38.4653)
+
+[node name="metal_desk4" parent="Props" instance=ExtResource("27_aqsj7")]
+transform = Transform3D(0.994712, 0, -0.102706, 0, 1, 0, 0.102706, 0, 0.994712, 37.2536, 0.841852, -38.1168)
 
 [node name="Areas" type="Node3D" parent="."]
 
@@ -693,15 +711,23 @@ end_delay = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10071, -1.15378, 2.01222)
 shape = SubResource("BoxShape3D_qsi67")
 
-[node name="Area3D3" type="Area3D" parent="Areas"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3949, 12.0145, 7.23717)
-visible = false
+[node name="checkpoint" type="Area3D" parent="Areas"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83088, 8.36187, -1.45928)
 script = ExtResource("18_2lxrd")
-event = 10
+event = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/checkpoint"]
+shape = SubResource("BoxShape3D_nc5ta")
+
+[node name="Area3D3" type="Area3D" parent="Areas"]
+script = ExtResource("18_2lxrd")
+event = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Areas/Area3D3"]
-shape = SubResource("BoxShape3D_nc5ta")
-disabled = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5001, 1.10041, -39.5111)
+shape = SubResource("BoxShape3D_o6pso")
+
+[node name="Timer" type="Timer" parent="Areas/Area3D3"]
 
 [node name="Flashbacks" type="Node3D" parent="."]
 
@@ -764,8 +790,11 @@ transform = Transform3D(-0.463, 0, -4.04767e-08, 0, 0.463, 0, 4.04767e-08, 0, -0
 [node name="closet4" parent="Closets" instance=ExtResource("25_ue3df")]
 transform = Transform3D(0.461385, 0, -0.0386381, 0, 0.463, 0, 0.0386381, 0, 0.461385, 9.41682, 6.44508, 23.6502)
 
-[node name="closet5" parent="Closets" instance=ExtResource("25_ue3df")]
+[node name="surprise_closet" parent="Closets" instance=ExtResource("25_ue3df")]
 transform = Transform3D(0.461385, 0, -0.0386381, 0, 0.463, 0, 0.0386381, 0, 0.461385, 2.57687, 6.47355, 32.7925)
+
+[node name="closet5" parent="Closets" instance=ExtResource("25_ue3df")]
+transform = Transform3D(0.0514335, 0, 0.460134, 0, 0.463, 0, -0.460134, 0, 0.0514335, 37.091, 0.845747, -32.0878)
 
 [node name="CenterMessage" type="Label" parent="."]
 offset_left = -2.0
@@ -865,41 +894,41 @@ script = ExtResource("29_tcmyi")
 stream = ExtResource("14_dfamw")
 script = ExtResource("29_tcmyi")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Door Signs" type="Node3D" parent="."]
 
-[node name="empty_sign" parent="Node3D" instance=ExtResource("39_dkqty")]
+[node name="empty_sign" parent="Door Signs" instance=ExtResource("39_dkqty")]
 transform = Transform3D(5.52188e-16, -1.26326e-08, -0.289, -0.289, -1.26326e-08, 4.26171e-23, -1.26326e-08, 0.289, -1.26326e-08, -43.9646, 11.4213, 19.2618)
 text = "2"
 
-[node name="empty_sign2" parent="Node3D" instance=ExtResource("39_dkqty")]
+[node name="empty_sign2" parent="Door Signs" instance=ExtResource("39_dkqty")]
 transform = Transform3D(-4.25447e-10, 0.00973309, 0.288836, -0.289, -1.26326e-08, 6.49437e-16, 1.26254e-08, -0.288836, 0.00973309, -41.393, 11.799, 22.9131)
 text = "3"
 
-[node name="empty_sign3" parent="Node3D" instance=ExtResource("39_dkqty")]
+[node name="empty_sign3" parent="Door Signs" instance=ExtResource("39_dkqty")]
 transform = Transform3D(4.25448e-10, -0.00973311, -0.288836, -0.289, -1.26326e-08, 6.49437e-16, -1.26254e-08, 0.288836, -0.00973311, -36.3512, 11.4213, 19.2805)
 text = "4"
 
-[node name="empty_sign4" parent="Node3D" instance=ExtResource("39_dkqty")]
+[node name="empty_sign4" parent="Door Signs" instance=ExtResource("39_dkqty")]
 transform = Transform3D(-4.63141e-12, 0.000105962, 0.289, -0.289, -1.26326e-08, -2.01099e-16, 1.26326e-08, -0.289, 0.000105962, -33.6915, 11.7998, 22.9168)
 text = "5"
 
-[node name="empty_sign5" parent="Node3D" instance=ExtResource("39_dkqty")]
+[node name="empty_sign5" parent="Door Signs" instance=ExtResource("39_dkqty")]
 transform = Transform3D(4.25448e-10, -0.00973311, -0.288836, -0.289, -1.26326e-08, 6.49437e-16, -1.26254e-08, 0.288836, -0.00973311, -28.7151, 11.4213, 19.2805)
 text = "6"
 
-[node name="empty_sign6" parent="Node3D" instance=ExtResource("39_dkqty")]
+[node name="empty_sign6" parent="Door Signs" instance=ExtResource("39_dkqty")]
 transform = Transform3D(-4.63141e-12, 0.000105962, 0.289, -0.289, -1.26326e-08, -2.01099e-16, 1.26326e-08, -0.289, 0.000105962, -26.2523, 11.7998, 22.9168)
 text = "7"
 
-[node name="empty_sign7" parent="Node3D" instance=ExtResource("39_dkqty")]
+[node name="empty_sign7" parent="Door Signs" instance=ExtResource("39_dkqty")]
 transform = Transform3D(4.25448e-10, -0.00973311, -0.288836, -0.289, -1.26326e-08, 6.49437e-16, -1.26254e-08, 0.288836, -0.00973311, -20.9166, 11.4213, 19.2805)
 text = "8"
 
-[node name="empty_sign8" parent="Node3D" instance=ExtResource("39_dkqty")]
+[node name="empty_sign8" parent="Door Signs" instance=ExtResource("39_dkqty")]
 transform = Transform3D(-4.63141e-12, 0.000105962, 0.289, -0.289, -1.26326e-08, -2.01099e-16, 1.26326e-08, -0.289, 0.000105962, -18.421, 11.7998, 22.9168)
 text = "9"
 
-[node name="empty_sign9" parent="Node3D" instance=ExtResource("39_dkqty")]
+[node name="empty_sign9" parent="Door Signs" instance=ExtResource("39_dkqty")]
 transform = Transform3D(-1.72143e-09, 0.0393817, 0.286304, -0.289, -1.26326e-08, 3.84345e-16, 1.25147e-08, -0.286304, 0.0393817, -47.0424, 11.4213, 22.8854)
 text = "1"
 
@@ -909,6 +938,8 @@ text = "1"
 [connection signal="passwordSuccess" from="PasswordLockModel/PasswordLock" to="." method="_on_password_lock_success"]
 [connection signal="body_entered" from="Areas/Area3D" to="Areas/Area3D" method="_on_body_entered"]
 [connection signal="body_entered" from="Areas/Area3D2" to="Areas/Area3D2" method="_on_body_entered"]
+[connection signal="body_entered" from="Areas/checkpoint" to="Areas/checkpoint" method="_on_body_entered"]
 [connection signal="body_entered" from="Areas/Area3D3" to="Areas/Area3D3" method="_on_body_entered"]
+[connection signal="timeout" from="Areas/Area3D3/Timer" to="Areas/Area3D3" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="Flashbacks/SanityTest/Camera3D/AnimationPlayer" to="Flashbacks/SanityTest" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="Darkness/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

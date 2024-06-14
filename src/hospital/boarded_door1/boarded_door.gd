@@ -12,4 +12,5 @@ func fall_down():
 
 func _on_timer_timeout():
 	for plank_node in plank_nodes:
-		plank_node.freeze = true
+		#plank_node.freeze = true
+		pass

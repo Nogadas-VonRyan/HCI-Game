@@ -8,6 +8,8 @@ signal NotPointingAtInteractable
 @onready var Raycast: ShapeCast3D = $Head/Camera3D/ShapeCast3D 
 @export var SPEED = 2.0
 @export var JUMP_VELOCITY = 20.5
+
+var lock_flashlight = false
 var mouse_relative_x = 0
 var mouse_relative_y = 0
 var disable_player = false
@@ -23,7 +25,7 @@ func _ready():
 
 
 func _input(event):	
-	if Input.is_action_just_pressed("flashlight"):
+	if Input.is_action_just_pressed("flashlight") and !lock_flashlight:
 		flashlight.visible = !flashlight.visible
 	
 	if event is InputEventMouseMotion:

@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvsr27qass52n"]
+
+[ext_resource type="AudioStream" uid="uid://bpdc3eaqa32oi" path="res://assets/audio/horror-intro-music.mp3" id="1_smxe1"]
+[ext_resource type="Script" path="res://src/cutscenes/ending/ending.gd" id="1_tb4jh"]
+[ext_resource type="FontFile" uid="uid://co5bg33xqdhr3" path="res://assets/fonts/FeENrm2.ttf" id="2_0kwee"]
+
+[sub_resource type="Animation" id="Animation_3f2c2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b3uld"]
+resource_name = "fade_out"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pces8"]
+_data = {
+"RESET": SubResource("Animation_3f2c2"),
+"fade_out": SubResource("Animation_b3uld")
+}
+
+[node name="Ending" type="Node2D"]
+script = ExtResource("1_tb4jh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -43.0
+offset_right = 1217.0
+offset_bottom = 675.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 409.0
+offset_top = -87.0
+offset_right = 788.0
+offset_bottom = -87.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 83
+theme_override_constants/v_separation = 50
+columns = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 742.0
+offset_right = 768.0
+offset_bottom = 823.0
+theme_override_fonts/font = ExtResource("2_0kwee")
+theme_override_font_sizes/font_size = 63
+text = "The End"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 914.0
+offset_top = 593.0
+offset_right = 1107.0
+offset_bottom = 619.0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+text = "Press enter to return..."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_smxe1")
+volume_db = -18.8
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pces8")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

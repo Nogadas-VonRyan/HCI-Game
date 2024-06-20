@@ -38,6 +38,8 @@ func _input(event):
 
 func _physics_process(delta):
 	if disable_player:
+		$AnimationPlayer.pause()
+		$AudioStreamPlayer.stream_paused = true
 		return
 	
 	if Input.is_action_pressed("run"):

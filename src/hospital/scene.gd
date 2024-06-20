@@ -36,6 +36,7 @@ func _unhandled_input(_event):
 			$Player/Head/Camera3D.current = true
 			Player.disable_player = false
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			$Props/LightsOut/StaticBody3D/CollisionShape3D.disabled = false
 		elif not PauseMenu.visible and not stopTransition:
 			get_tree().paused = true
 			PauseMenu.visible = true
@@ -104,6 +105,8 @@ func _on_player_pointing_at_interactable(collided):
 				collided.interact()
 			"Key":
 				hasUndergroundKey = true
+				collided.interact()
+			"LightsOut":
 				collided.interact()
 			_:
 				pass

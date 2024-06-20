@@ -1,0 +1,141 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceum5mgder74v"]
+
+[ext_resource type="PackedScene" uid="uid://dp0b2xhfda0qs" path="res://src/hospital/props/empty_sign.tscn" id="1_5vn1w"]
+[ext_resource type="Script" path="res://src/hospital/lights_out_puzzle/lights_out_buttons.gd" id="1_t6e12"]
+[ext_resource type="PackedScene" uid="uid://ujkpd311ul3n" path="res://src/hospital/lights_out_puzzle/button.tscn" id="2_kxmjo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_htj0e"]
+size = Vector3(0.808491, 0.0984749, 0.663911)
+
+[node name="LightsOut" type="Node3D"]
+
+[node name="empty_sign" parent="." instance=ExtResource("1_5vn1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.48256, 0, 0, 0)
+
+[node name="buttons" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0261478, 0, 0.0142561)
+
+[node name="button" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.237852, 0, 0.242316)
+
+[node name="button2" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.238, 0, 0.11)
+col = 1
+
+[node name="button3" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.237852, 0, -0.0172336)
+col = 2
+
+[node name="button4" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.237852, 0, -0.143006)
+col = 3
+
+[node name="button5" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.237852, 0, -0.269457)
+col = 4
+
+[node name="button6" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108377, 0, 0.244186)
+row = 1
+
+[node name="button7" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11, 0, 0.11)
+row = 1
+col = 1
+
+[node name="button8" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108, 0, -0.017)
+row = 1
+col = 2
+
+[node name="button9" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108, 0, -0.143)
+row = 1
+col = 3
+
+[node name="button10" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108, 0, -0.269)
+row = 1
+col = 4
+
+[node name="button11" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0215386, 0, 0.239977)
+row = 2
+
+[node name="button12" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022, 0, 0.11)
+row = 2
+col = 1
+
+[node name="button13" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022, 0, -0.017)
+row = 2
+col = 2
+
+[node name="button14" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022, 0, -0.143)
+row = 2
+col = 3
+
+[node name="button15" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022, 0, -0.269)
+row = 2
+col = 4
+
+[node name="button16" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149468, 0, 0.238099)
+row = 3
+
+[node name="button17" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149, 0, 0.11)
+row = 3
+col = 1
+
+[node name="button18" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149, 0, -0.017)
+row = 3
+col = 2
+
+[node name="button19" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149, 0, -0.143)
+row = 3
+col = 3
+
+[node name="button20" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.149, 0, -0.269)
+row = 3
+col = 4
+
+[node name="button21" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28459, -1.37091e-06, 0.234839)
+row = 4
+
+[node name="button22" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.285, 0, 0.11)
+row = 4
+col = 1
+
+[node name="button23" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.285, 0, -0.017)
+row = 4
+col = 2
+
+[node name="button24" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.285, 0, -0.143)
+row = 4
+col = 3
+
+[node name="button25" parent="buttons" instance=ExtResource("2_kxmjo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.287385, 0, -0.268799)
+row = 4
+col = 4
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.000680641, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, -0.000680641, -2.97518e-11, 0, 0.747881, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 3
+script = ExtResource("1_t6e12")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_htj0e")

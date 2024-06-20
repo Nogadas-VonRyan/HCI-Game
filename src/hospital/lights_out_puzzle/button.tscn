@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ujkpd311ul3n"]
+
+[ext_resource type="Script" path="res://src/hospital/lights_out_puzzle/button.gd" id="1_gg3f0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cqug5"]
+radius = 0.0505371
+height = 0.109071
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibg21"]
+emission_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xang0"]
+material = SubResource("StandardMaterial3D_ibg21")
+
+[node name="button" type="StaticBody3D"]
+script = ExtResource("1_gg3f0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.20585e-06, -0.0166284, 0.00026834)
+shape = SubResource("CapsuleShape3D_cqug5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.03, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_xang0")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

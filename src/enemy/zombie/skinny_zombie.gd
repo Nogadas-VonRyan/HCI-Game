@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var nav = $NavigationAgent3D
 @export var animation: String
-@export var follow: bool = true
+@export var follow: bool = false
 @onready var animationNode = $AnimationPlayer
 @onready var camera = $Camera3D
 @onready var scream = $scream
@@ -11,12 +11,13 @@ extends CharacterBody3D
 @onready var spawn_position = Vector3(-52.459,11.123,31.654)
 
 @onready var player_position = Global.getRoot().get_node('Player')
-@onready var target = player_position
+var target
 var following_target: bool = false
 
 var animation_node: String
 
 func _ready():
+	target = spawn_position
 	$CollisionShape3D.disabled = disabled_collision
 	match animation:
 		"Sleep":
@@ -28,7 +29,7 @@ func _ready():
 func _physics_process(delta):
 	if not follow:
 		return
-		
+	
 	if animationNode.current_animation != 'Armature002|mixamocom|Layer0001':
 		animationNode.play("Armature001|mixamocom|Layer0")
 		
@@ -37,7 +38,10 @@ func _physics_process(delta):
 	if following_target:
 		nav.target_position = target
 	else:
-		nav.target_position = target.global_position
+		nav.target_position = player_position.global_position
+		
+	if name == "skinny_zombie":
+		print(following_target)
 	
 	var next_pos = nav.get_next_path_position()
 	
@@ -58,6 +62,7 @@ func _on_area_3d_body_entered(body):
 	
 	camera.current = true
 	scream.play()
+	
 
 func _on_animation_player_animation_finished(anim_name):
 	if(anim_name == 'Armature002|mixamocom|Layer0001'):
@@ -65,8 +70,16 @@ func _on_animation_player_animation_finished(anim_name):
 		Player.global_position.x = -52.041
 		Player.global_position.y = 11.304
 		Player.global_position.z = 32.31
+		
+		
+		var zombie = $"../skinny_zombie"
+		zombie.global_position.x = -28.89
+		zombie.global_position.y = 11.26
+		zombie.global_position.z = 21.15
+		zombie.follow_player()
+		
 		camera.current = false
-	pass
+		
 	
 func follow_target(input_position):
 	following_target = true

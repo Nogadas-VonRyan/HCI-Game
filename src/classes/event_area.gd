@@ -24,14 +24,13 @@ func _on_body_entered(_body):
 			Global.getRoot().fade_and_exit()
 		1:
 			var zombie = Global.getRoot().get_node('Enemies').get_node('skinny_zombie')
-			zombie.follow_target(zombie.spawn_position)
+			zombie.following_target = true
 		2:
 			var player = Global.getRoot().get_node('Player')
 			player.flashlight.visible = false 
 			player.lock_flashlight = true
 			$Timer.start(10)
-			$CollisionShape3D.disabled = true
-			
+			$CollisionShape3D.call_deferred("set_disabled",true)
 
 
 func _on_timer_timeout():

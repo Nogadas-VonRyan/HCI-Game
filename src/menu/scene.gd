@@ -21,41 +21,6 @@ func _unhandled_input(_event):
 		$Settings.visible = false
 		$Menu.visible = true
 		$Blur.visible = false
-#
-#func _input(event):
-#	if $Menu.visible and event is InputEventMouse:
-#		if MenuRect.has_point(event.position):
-#			Selector.visible = true
-#			goToScene()
-#		else:
-#			Selector.visible = false
-#
-#
-#func goToScene():
-#	if Input.is_action_just_pressed("Click"):
-#				# Dont remove the Integer casting
-#				match Selector.position.y as int: 
-#					450:
-#						get_tree().change_scene_to_file.call_deferred("res://src/cutscenes/intro/scene.tscn")
-#					495:
-#						if $Settings.visible:
-##							$Settings.visible = false
-##							$Blur.visible = false
-##							$Menu.visible = true
-##							print("occur")
-#							pass
-#						else:
-#							$Settings.visible = true
-#							$Blur.visible = true
-#							$Menu.visible = false
-#							Selector.visible = false
-#					540:
-#						get_tree().change_scene_to_file.call_deferred("res://src/menu/credits/credits.tscn")
-#					585:
-#						get_tree().quit()
-#					_:
-#						print("Cursor is pointing to nothing")
-
 
 func _on_start_button_gui_input(event):
 	Selector.position.y = StartButton.global_position.y

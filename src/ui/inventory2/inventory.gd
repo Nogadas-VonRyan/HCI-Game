@@ -9,7 +9,7 @@ var DiaryPageInventory: Array[Interactable] = []
 
 func _ready():
 	$Selector.visible = false
-	addDiaryPageWithoutObject(5,"
+	addDiaryPageWithoutObject(10,"
 		Hello, my grandson.\n\nIf you're reading this, then I must have been long gone from this world already.
 		
 		I have a lot to tell you but I'm afraid I don't have much time left before it happens.

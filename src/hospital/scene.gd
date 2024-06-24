@@ -72,7 +72,7 @@ func _on_player_pointing_at_interactable(collided):
 					else:
 						$Dialogue.setDialogue("I think I need a key first",0,4)
 				
-				if isPasswordLock1Complete and collided.hasLock:
+				if collided.name == "hallway_door" and isPasswordLock1Complete and collided.hasLock:
 					collided.hasLock = false
 				if not collided.Door.is_playing() and collided.isOpen:
 					$DoorClose.play()

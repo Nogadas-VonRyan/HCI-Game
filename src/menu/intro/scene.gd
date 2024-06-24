@@ -5,8 +5,8 @@ extends Control
 var displayed_count: int = 0
 
 func _ready():
-	# animation.play("text_fade")
-	timer.start(51)
+	animation.play("text_fade")
+	timer.start(5)
 
 func _input(event):
 	if event is InputEventKey:

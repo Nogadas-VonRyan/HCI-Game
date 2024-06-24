@@ -81,4 +81,5 @@ layout_mode = 2
 text = "Restore Default Settings"
 script = ExtResource("3_6uv36")
 
+[connection signal="value_changed" from="Grid/MouseSensitivityInput" to="Grid/MouseSensitivityInput" method="_on_value_changed"]
 [connection signal="pressed" from="Grid/RestoreDefault" to="Grid/RestoreDefault" method="_on_pressed"]

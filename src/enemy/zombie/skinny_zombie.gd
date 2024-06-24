@@ -39,9 +39,6 @@ func _physics_process(delta):
 		nav.target_position = target
 	else:
 		nav.target_position = player_position.global_position
-		
-	if name == "skinny_zombie":
-		print(following_target)
 	
 	var next_pos = nav.get_next_path_position()
 	
